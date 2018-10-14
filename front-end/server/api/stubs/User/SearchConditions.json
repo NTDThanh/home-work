@@ -1,0 +1,136 @@
+{
+  "simple": [{
+    "id": "state",
+    "label": "状態",
+    "type": "button",
+    "items": [{
+      "label": "無効",
+      "value": 0
+    }, {
+      "label": "有効",
+      "value": 1
+    }]
+  }, {
+    "id": "employeeNo",
+    "label": "社員番号",
+    "type": "select",
+    "items": [{
+      "label": "0123456789",
+      "value": "0123456789"
+    }]
+  }, {
+    "id": "fullName",
+    "label": "氏名",
+    "type": "select",
+    "items": [{
+      "label": "鈴木太郎",
+      "value": "鈴木太郎"
+    }]
+  }, {
+    "id": "officeType",
+    "label": "本支店区分",
+    "type": "select",
+    "items": [{
+      "label": "本社",
+      "value": 1
+    }]
+  }, {
+    "id": "keyword",
+    "label": "キーワード",
+    "type": "text",
+    "items": []
+  }],
+  "advanced": [{
+    "id": "state",
+    "label": "状態",
+    "type": "multiSelect",
+    "items": [{
+      "label": "無効",
+      "value": 0
+    }, {
+      "label": "有効",
+      "value": 1
+    }]
+  }, {
+    "id": "employeeNo",
+    "label": "社員番号",
+    "type": "multiSelect",
+    "items": [{
+      "label": "0123456789",
+      "value": "0123456789"
+    }]
+  }, {
+    "id": "fullName",
+    "label": "氏名",
+    "type": "multiSelect",
+    "items": [{
+      "label": "鈴木太郎",
+      "value": "鈴木太郎"
+    }]
+  }, {
+    "id": "officeType",
+    "label": "本支店区分",
+    "type": "multiSelect",
+    "items": [{
+      "label": "本社",
+      "value": 1
+    }]
+  }, {
+    "id": "role",
+    "label": "役割",
+    "type": "multiSelect",
+    "items": [{
+      "label": "設備員",
+      "value": 1
+    }, {
+      "label": "警備員",
+      "value": 2
+    }]
+  }, {
+    "id": "employmentType",
+    "label": "雇用区分",
+    "type": "multiSelect",
+    "items": [{
+      "label": "設備員",
+      "value": 1
+    }, {
+      "label": "警備員",
+      "value": 2
+    }]
+  }, {
+    "id": "createDateFrom",
+    "label": "作成日",
+    "type": "date",
+    "items": []
+  }, {
+    "id": "createDateTo",
+    "label": "作成日",
+    "type": "date",
+    "items": []
+  }, {
+    "id": "editDateFrom",
+    "label": "編集日",
+    "type": "date",
+    "items": []
+  }, {
+    "id": "editDateTo",
+    "label": "編集日",
+    "type": "date",
+    "items": []
+  }, {
+    "id": "lastVisitFrom",
+    "label": "最終ログイン日時",
+    "type": "date",
+    "items": []
+  }, {
+    "id": "lastVisitTo",
+    "label": "最終ログイン日時",
+    "type": "date",
+    "items": []
+  }, {
+    "id": "keyword",
+    "label": "キーワード",
+    "type": "text",
+    "items": []
+  }]
+}

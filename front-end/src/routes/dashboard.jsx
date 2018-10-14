@@ -17,6 +17,7 @@ import Maps from "views/Maps/Maps.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
 import ExerciseListPage from "containers/ExercisePage/ExerciseListPage/Loadable";
+import UserLoginPage from "containers/UserPage/UserLoginPage/Loadable";
 
 const dashboardRoutes = [
   {
@@ -32,6 +33,13 @@ const dashboardRoutes = [
     navbarName: "Excercise List",
     icon: Dashboard,
     component: ExerciseListPage
+  },
+  {
+    path: "/login",
+    sidebarName: "Login Page",
+    navbarName: "Login",
+    icon: Dashboard,
+    component: UserLoginPage
   },
   {
     path: "/user",

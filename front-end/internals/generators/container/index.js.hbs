@@ -1,8 +1,8 @@
 /*
- *
- * {{properCase name }}
- *
- */
+*
+* {{properCase name }}
+*
+*/
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -21,44 +21,41 @@ import makeSelect{{properCase name}} from './selectors';
 import messages from './messages';
 {{/if}}
 
+const styles = {};
 /* eslint-disable react/prefer-stateless-function */
 export class {{ properCase name }} extends React.{{{ component }}} {
-  render() {
-    return (
-      <div>
-      {{#if wantHeaders}}
-        <Helmet>
-          <title>{{properCase name}}</title>
-          <meta
-            name="description"
-            content="Description of {{properCase name}}"
-          />
-        </Helmet>
-      {{/if}}
-      {{#if wantMessages}}
-        <FormattedMessage {...messages.header} />
-      {{/if}}
-      </div>
-    );
-  }
+render() {
+return (
+<div>
+  {{#if wantHeaders}}
+  <Helmet>
+    <title>{{properCase name}}</title>
+    <meta name="description" content="Description of {{properCase name}}" />
+  </Helmet>
+  {{/if}}
+  {{#if wantMessages}}
+  <FormattedMessage {...messages.header} />
+  {{/if}}
+</div>
+);
+}
 }
 
 {{ properCase name }}.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+dispatch: PropTypes.func.isRequired,
 };
 
 {{#if wantActionsAndReducer}}
 const mapStateToProps = createStructuredSelector({
-  {{name}}: makeSelect{{properCase name}}(),
+{{name}}: makeSelect{{properCase name}}(),
 });
 {{/if}}
 
 function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
+return {
+dispatch,
+};
 }
-
 {{#if wantActionsAndReducer}}
 export default connect(mapStateToProps, mapDispatchToProps)({{ properCase name }});
 {{else}}

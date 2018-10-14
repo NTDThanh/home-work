@@ -4,6 +4,7 @@ import { createBrowserHistory } from "history";
 import { Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import configureStore from "./configureStore";
+import UserLoginPage from "containers/UserPage/UserLoginPage/Loadable";
 
 import "assets/css/material-dashboard-react.css?v=1.5.0";
 
@@ -12,15 +13,22 @@ import indexRoutes from "routes/index.jsx";
 const hist = createBrowserHistory();
 const initialState = {};
 const store = configureStore(initialState, hist);
+// [Todo] check login method
+const isLogin = false;
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={hist}>
       <Switch>
-        {indexRoutes.map((prop, key) => {
-          return (
-            <Route path={prop.path} component={prop.component} key={key} />
-          );
-        })}
+        {isLogin ? (
+          indexRoutes.map((prop, key) => {
+            return (
+              <Route path={prop.path} component={prop.component} key={key} />
+            );
+          })
+        ) : (
+          <Route path={"/"} component={UserLoginPage} />
+        )}
       </Switch>
     </Router>
   </Provider>,

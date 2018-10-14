@@ -66,14 +66,16 @@ export class ExerciseListPage extends React.PureComponent {
     return (
       <div>
         <Helmet>
-          <title>ExerciseListPage</title>
-          <meta name="description" content="Description of ExerciseListPage" />
+          <title>Danh sách bài tập</title>
+          <meta name="description" content="Thêm sửa xóa bài tập" />
         </Helmet>
         <GridContainer>
           <GridItem xs={12} sm={12} md={12}>
             <Card>
               <CardHeader color="primary">
-                <h4 className={classes.cardTitleWhite}>List Exercise</h4>
+                <h4 className={classes.cardTitleWhite}>
+                  <FormattedMessage {...messages.exerciseListPageTitle} />
+                </h4>
                 {/* <p className={classes.cardCategoryWhite}>
                 
                 </p> */}

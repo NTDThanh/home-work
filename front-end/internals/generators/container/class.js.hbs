@@ -1,12 +1,13 @@
 /**
- *
- * {{properCase name }}
- *
- */
+*
+* {{properCase name }}
+*
+*/
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import withStyles from "@material-ui/core/styles/withStyles";
 {{#if wantHeaders}}
 import { Helmet } from 'react-helmet';
 {{/if}}
@@ -33,47 +34,49 @@ import saga from './saga';
 import messages from './messages';
 {{/if}}
 
+const styles ={};
 /* eslint-disable react/prefer-stateless-function */
 export class {{ properCase name }} extends {{{ type }}} {
-  render() {
-    return (
-      <div>
-      {{#if wantHeaders}}
-        <Helmet>
-          <title>{{properCase name}}</title>
-          <meta name="description" content="Description of {{properCase name}}" />
-        </Helmet>
-      {{/if}}
-      {{#if wantMessages}}
-        <FormattedMessage {...messages.header} />
-      {{/if}}
-      </div>
-    );
-  }
+render() {
+return (
+<div>
+  {{#if wantHeaders}}
+  <Helmet>
+    <title>{{properCase name}}</title>
+    <meta name="description" content="Description of {{properCase name}}" />
+  </Helmet>
+  {{/if}}
+  {{#if wantMessages}}
+  <FormattedMessage {...messages.header} />
+  {{/if}}
+</div>
+);
+}
 }
 
 {{ properCase name }}.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+dispatch: PropTypes.func.isRequired,
 };
 
 {{#if wantActionsAndReducer}}
 const mapStateToProps = createStructuredSelector({
-  {{ lowerCase name }}: makeSelect{{properCase name}}(),
+{{ lowerCase name }}: makeSelect{{properCase name}}(),
 });
 {{/if}}
 
 function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
+return {
+dispatch,
+};
 }
 
 {{#if wantActionsAndReducer}}
 const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps
+mapStateToProps,
+mapDispatchToProps
 );
 
+const withStyle = withStyles(styles);
 const withReducer = injectReducer({ key: '{{ camelCase name }}', reducer });
 {{else}}
 const withConnect = connect(null, mapDispatchToProps);
@@ -84,10 +87,11 @@ const withSaga = injectSaga({ key: '{{ camelCase name }}', saga });
 
 export default compose(
 {{#if wantActionsAndReducer}}
-  withReducer,
+withReducer,
 {{/if}}
 {{#if wantSaga}}
-  withSaga,
+withSaga,
 {{/if}}
-  withConnect
+withConnect,
+withStyle
 )({{ properCase name }});
