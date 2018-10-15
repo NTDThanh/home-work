@@ -5,16 +5,15 @@ import { Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import configureStore from "./configureStore";
 import UserLoginPage from "containers/UserPage/UserLoginPage/Loadable";
-
+import { checkLogin } from "../src/utils/user";
 import "assets/css/material-dashboard-react.css?v=1.5.0";
-
 import indexRoutes from "routes/index.jsx";
 
 const hist = createBrowserHistory();
 const initialState = {};
 const store = configureStore(initialState, hist);
 // [Todo] check login method
-const isLogin = false;
+const isLogin = checkLogin();
 
 ReactDOM.render(
   <Provider store={store}>

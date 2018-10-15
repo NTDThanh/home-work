@@ -5,17 +5,26 @@
  */
 
 import { fromJS } from "immutable";
-import { INPUT_CHANGE } from "./constants";
+import * as C from "./constants";
 
 export const initialState = fromJS({
-  acc: "",
-  pass: ""
+  account: "",
+  password: "",
+  loginSuccess: false,
+  redirectLink: ""
 });
 
 function userLoginPageReducer(state = initialState, action) {
   switch (action.type) {
-    case INPUT_CHANGE:
+    case C.INPUT_CHANGE:
       return state.set(action.payload.inputName, action.payload.inputValue);
+    case C.LOGIN_REQUEST_SUCCESS:
+    debugger
+      return state
+        .set("loginSuccess", true)
+        .set("redirectLink", action.payload.redirectLink);
+    case C.LOGIN_REQUEST_FAIL:
+      return state;
     default:
       return state;
   }

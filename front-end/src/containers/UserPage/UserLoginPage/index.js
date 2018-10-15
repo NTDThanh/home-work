@@ -38,15 +38,29 @@ const styles = {
 };
 /* eslint-disable react/prefer-stateless-function */
 export class UserLoginPage extends React.PureComponent {
-  handleLogin = () => {};
+  handleLogin = () => {
+    const loginInfo = {
+      user: {
+        account: this.props.userloginpage.account,
+        password: this.props.userloginpage.password
+      },
+      redirectLink: "/dashboard"
+    };
+    this.props.actions.handleLogin(loginInfo);
+  };
+
   handleInputChange = e => {
     const { target } = e;
-    debugger
     const { value, name } = target;
-    this.props.actions.onChangeInput(value, name);
+    this.props.actions.onChangeInput(name, value);
   };
+
+  handleRedirect = redirectLink => {
+    this.props.history.push(redirectLink);
+  };
+
   render() {
-    const { classes, profilePic = avatar } = this.props;
+    const { classes, profilePic = avatar, userloginpage } = this.props;
     return (
       <div className={classes.loginpagecontainer}>
         <Helmet>
@@ -81,7 +95,8 @@ export class UserLoginPage extends React.PureComponent {
                       inputProps={{
                         autoFocus: true,
                         onChange: this.handleInputChange,
-                        name: "acc"
+                        name: "account",
+                        value: userloginpage.account
                       }}
                     />
                   </GridItem>
@@ -95,7 +110,8 @@ export class UserLoginPage extends React.PureComponent {
                       inputProps={{
                         type: "password",
                         onChange: this.handleInputChange,
-                        name: "password"
+                        name: "password",
+                        value: userloginpage.password
                       }}
                     />
                   </GridItem>
