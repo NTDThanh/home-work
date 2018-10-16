@@ -17,10 +17,18 @@ export default defineMessages({
   },
   accLabel: {
     id: "app.containers.UserLoginPage.accLabel",
-    defaultMessage: "Tên hoặc Email"
+    defaultMessage: "Email"
   },
   passLabel: {
     id: "app.containers.UserLoginPage.passLabel",
     defaultMessage: "Mật khẩu"
+  },
+  userNameLabel: {
+    id: "app.containers.UserLoginPage.userNameLabel",
+    defaultMessage: "Tên người dùng"
+  },
+  emailLabel: {
+    id: "app.containers.UserLoginPage.emailLabel",
+    defaultMessage: "Email"
   }
 });

@@ -1,16 +1,19 @@
+import { AbstractApi } from "../api/api";
+
 // TODO to settings
 const API_URL = "http://5bc3609cce72500013c2a64f.mockapi.io";
 
+const api = new AbstractApi();
 // TODO to settings
 const API_HEADERS = {
   "Content-type": "application/json"
 };
 
 const API_PATH = {
-  fetchUserLogin: "/login"
+  fetchUserLogin: "/login",
+  fetchUserLoginFail: "/login400"
 };
 
-// import request from 'request';
 export default class requestApi {
   static async fetchUserLogin(payload) {
     try {
@@ -19,11 +22,13 @@ export default class requestApi {
         headers: API_HEADERS,
         body: JSON.stringify({ payload })
       });
-      // console.log(response);
-      if (response.ok) {
-        return await response.json();
+      const apiResult = await api.handleApiResult(response);
+      let data = {};
+
+      if (apiResult.isSuccess()) {
+        data = await response.json();
       }
-      return null;
+      return { apiResult, data };
     } catch (e) {
       // console.error(e);
       throw e;

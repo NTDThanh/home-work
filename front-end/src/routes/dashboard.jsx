@@ -7,6 +7,7 @@ import BubbleChart from "@material-ui/icons/BubbleChart";
 import LocationOn from "@material-ui/icons/LocationOn";
 import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
+
 // core components/views
 import DashboardPage from "views/Dashboard/Dashboard.jsx";
 import UserProfile from "views/UserProfile/UserProfile.jsx";
@@ -18,6 +19,7 @@ import NotificationsPage from "views/Notifications/Notifications.jsx";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
 import ExerciseListPage from "containers/ExercisePage/ExerciseListPage/Loadable";
 import UserLoginPage from "containers/UserPage/UserLoginPage/Loadable";
+import UserCreateEditPage from "containers/UserPage/UserCreateEditPage/Loadable";
 
 const dashboardRoutes = [
   {
@@ -40,6 +42,13 @@ const dashboardRoutes = [
     navbarName: "Login",
     icon: Dashboard,
     component: UserLoginPage
+  },
+  {
+    path: "/register",
+    sidebarName: "Register Page",
+    navbarName: "Register",
+    icon: Dashboard,
+    component: UserCreateEditPage
   },
   {
     path: "/user",

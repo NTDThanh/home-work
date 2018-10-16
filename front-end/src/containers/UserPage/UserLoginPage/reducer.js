@@ -16,19 +16,27 @@ export const initialState = fromJS({
   passwordError: false,
   loginSuccess: false,
   redirectLink: "",
-  username: ""
+  mode: C.REGISTER_MODE,
+  register: {
+    userName: "",
+    email: "",
+    password: "",
+    image: ""
+  }
 });
 
 function userLoginPageReducer(state = initialState, action) {
   switch (action.type) {
     case C.INPUT_CHANGE:
       return state.set(action.payload.inputName, action.payload.inputValue);
+    case C.INPUT_REGISTER_CHANGE:
+      return state.setIn(action.payload.inputName, action.payload.inputValue);
     case C.LOGIN_REQUEST_SUCCESS:
       return state
         .set("loginSuccess", true)
         .set("redirectLink", action.payload.redirectLink);
-    case C.LOGIN_REQUEST_FAIL:
-      return state;
+    case C.SWITCH_MODE:
+      return state.set("mode", action.payload.mode);
     default:
       return state;
   }

@@ -18,6 +18,7 @@
     "perfect-scrollbar": "1.4.0",
     "prop-types": "^15.6.2",
     "react": "16.5.2",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-chartist": "0.13.1",
     "react-dom": "16.5.2",
     "react-google-maps": "9.4.5",
