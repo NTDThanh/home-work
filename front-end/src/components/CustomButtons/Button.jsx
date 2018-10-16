@@ -3,12 +3,23 @@ import React from "react";
 import classNames from "classnames";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
-
 // material-ui components
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
-
+import CircularProgress from "@material-ui/core/CircularProgress";
 import buttonStyle from "assets/jss/material-dashboard-react/components/buttonStyle.jsx";
+
+const styles = {
+  buttonProgress: {
+    color: "white",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    marginTop: -15,
+    marginLeft: -15
+  }
+};
+
 function RegularButton({ ...props }) {
   const {
     classes,
@@ -23,6 +34,7 @@ function RegularButton({ ...props }) {
     justIcon,
     className,
     muiClasses,
+    loading,
     ...rest
   } = props;
   const btnClasses = classNames({
@@ -38,9 +50,19 @@ function RegularButton({ ...props }) {
     [className]: className
   });
   return (
-    <Button {...rest} classes={muiClasses} className={btnClasses}>
-      {children}
-    </Button>
+    <React.Fragment>
+      <Button
+        {...rest}
+        classes={muiClasses}
+        className={btnClasses}
+        disabled={loading}
+      >
+        {loading && (
+          <CircularProgress size={30} style={styles.buttonProgress} />
+        )}
+        {children}
+      </Button>
+    </React.Fragment>
   );
 }
 
