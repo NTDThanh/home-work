@@ -1,12 +1,12 @@
-import { createSelector } from 'reselect';
-import { initialState } from './reducer';
+import { createSelector } from "reselect";
+import { initialState } from "./reducer";
 
 /**
  * Direct selector to the userLoginPage state domain
  */
 
 const selectUserLoginPageDomain = state =>
-  state.get('userLoginPage', initialState);
+  state.get("userLoginPage", initialState);
 
 /**
  * Other specific selectors

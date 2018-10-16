@@ -7,6 +7,7 @@ import { fromJS } from "immutable";
 import { routerMiddleware } from "react-router-redux";
 import createSagaMiddleware from "redux-saga";
 import createReducer from "./reducers";
+// import { reducer as formReducer } from "redux-form";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -32,7 +33,12 @@ export default function configureStore(initialState = {}, history) {
       : compose;
   /* eslint-enable */
 
+  // Createreducers for redux-form
+  // const reducers = { form: formReducer };
+  // const reducer = combineReducers(reducers);
+
   const store = createStore(
+    // createReducer(reducer),
     createReducer(),
     fromJS(initialState),
     composeEnhancers(...enhancers)

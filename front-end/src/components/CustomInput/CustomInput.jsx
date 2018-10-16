@@ -9,8 +9,10 @@ import Input from "@material-ui/core/Input";
 // @material-ui/icons
 import Clear from "@material-ui/icons/Clear";
 import Check from "@material-ui/icons/Check";
+import FormHelperText from "@material-ui/core/FormHelperText";
 // core components
 import customInputStyle from "assets/jss/material-dashboard-react/components/customInputStyle.jsx";
+import messages from "../../containers/UserPage/UserLoginPage/messages";
 
 function CustomInput({ ...props }) {
   const {
@@ -21,6 +23,7 @@ function CustomInput({ ...props }) {
     labelProps,
     inputProps,
     error,
+    errorTexts,
     success
   } = props;
 
@@ -60,7 +63,14 @@ function CustomInput({ ...props }) {
         {...inputProps}
       />
       {error ? (
-        <Clear className={classes.feedback + " " + classes.labelRootError} />
+        <React.Fragment>
+          <Clear className={classes.feedback + " " + classes.labelRootError} />
+          <FormHelperText className={classes.inputErrorText}>
+            {errorTexts.map(messages => {
+              return <p>{messages}</p>;
+            })}
+          </FormHelperText>
+        </React.Fragment>
       ) : success ? (
         <Check className={classes.feedback + " " + classes.labelRootSuccess} />
       ) : null}

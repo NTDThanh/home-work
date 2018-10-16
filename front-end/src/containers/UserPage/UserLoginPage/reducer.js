@@ -9,9 +9,14 @@ import * as C from "./constants";
 
 export const initialState = fromJS({
   account: "",
+  accountErrorTexts: [],
+  accountError: false,
   password: "",
+  passwordErrorTexts: [],
+  passwordError: false,
   loginSuccess: false,
-  redirectLink: ""
+  redirectLink: "",
+  username: ""
 });
 
 function userLoginPageReducer(state = initialState, action) {
@@ -19,7 +24,6 @@ function userLoginPageReducer(state = initialState, action) {
     case C.INPUT_CHANGE:
       return state.set(action.payload.inputName, action.payload.inputValue);
     case C.LOGIN_REQUEST_SUCCESS:
-    debugger
       return state
         .set("loginSuccess", true)
         .set("redirectLink", action.payload.redirectLink);

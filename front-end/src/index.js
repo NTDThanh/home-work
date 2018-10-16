@@ -12,6 +12,7 @@ import indexRoutes from "routes/index.jsx";
 const hist = createBrowserHistory();
 const initialState = {};
 const store = configureStore(initialState, hist);
+
 // [Todo] check login method
 const isLogin = checkLogin();
 
