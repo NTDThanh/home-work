@@ -1,16 +1,18 @@
 import { takeLatest, call, put } from "redux-saga/effects";
 import request from "../../../api/requestApi";
 import * as C from "../UserLoginPage/constants";
-import { loginSuccess } from "../../../utils/user";
+import AppSession from "../../../utils/appSession";
 
+const appSession = new AppSession();
 // Individual exports for testing
 export function* fetchUserLogin(action) {
   try {
     const apiReponse = yield call(request.fetchUserLogin, action.payload.user);
-    if (apiReponse.status === 200) {
-      const { user, usergroup } = apiReponse;
-      loginSuccess(user, usergroup);
-      // Redirect to dashboard
+    const { apiResult, data } = apiReponse;
+    const { user, usergroup } = data;
+    if (apiResult.isSuccess()) {
+      appSession.loginSuccess(user, usergroup);
+      //[Todo] Refactor it Redirect to dashboard
       window.location.reload();
       yield put({
         type: C.LOGIN_REQUEST_SUCCESS,

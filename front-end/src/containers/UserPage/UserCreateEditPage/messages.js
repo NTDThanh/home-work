@@ -4,11 +4,21 @@
  * This contains all the text for the UserCreateEditPage component.
  */
 
-import { defineMessages } from 'react-intl';
+import { defineMessages } from "react-intl";
 
 export default defineMessages({
   header: {
-    id: 'app.containers.UserCreateEditPage.header',
-    defaultMessage: 'This is UserCreateEditPage container !',
-  },
+    create: {
+      id: "app.containers.UserCreateEditPage.create",
+      defaultMessage: "Đăng ký người dùng"
+    },
+    edit: {
+      id: "app.containers.UserCreateEditPage.edit",
+      defaultMessage: "Thay đổi thông tin"
+    },
+    detail: {
+      id: "app.containers.UserCreateEditPage.detail",
+      defaultMessage: "Thông tin người dùng"
+    }
+  }
 });
