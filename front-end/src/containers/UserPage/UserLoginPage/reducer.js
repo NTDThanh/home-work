@@ -40,10 +40,8 @@ function userLoginPageReducer(state = initialState, action) {
     case C.SWITCH_MODE:
       return state.set("mode", action.payload.mode);
     case C.START_LOADING:
-      debugger;
       return state.set("loading", true);
     case C.END_LOADING:
-      debugger;
       return state.set("loading", false);
     default:
       return state;

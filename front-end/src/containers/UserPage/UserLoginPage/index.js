@@ -60,56 +60,53 @@ export class UserLoginPage extends React.PureComponent {
       }
     ]);
     this.state = {
-      validation: this.validator.valid()
+      // validation: this.validator.valid()
     };
     this.submitted = false;
   }
   handleLogin = () => {
-    debugger;
     this.submitted = true;
-    if (this.validation) {
-      const loginInfo = {
-        user: {
-          account: this.props.userloginpage.account,
-          password: this.props.userloginpage.password,
-          mode: C.LOGIN_MODE
-        },
-        redirectLink: "/dashboard"
-      };
-      this.props.actions.handleLogin(loginInfo);
-    } else {
-      const states = this.props.userloginpage;
-      const validations = this.submitted // if the form has been submitted at least once
-        ? this.validator.validate(states) // then check validity every time we render
-        : this.state.validation; // otherwise just use what's in state
-      console.log(validations);
-      this.mapErrorMessage();
-    }
+    // if (this.validation) {
+    const loginInfo = {
+      user: {
+        account: this.props.userloginpage.account,
+        password: this.props.userloginpage.password,
+        mode: C.LOGIN_MODE
+      },
+      redirectLink: "/dashboard"
+    };
+    this.props.actions.handleLogin(loginInfo);
+    // } else {
+    // const states = this.props.userloginpage;
+    // const validations = this.submitted // if the form has been submitted at least once
+    //   ? this.validator.validate(states) // then check validity every time we render
+    //   : this.state.validation; // otherwise just use what's in state
+    this.mapErrorMessage();
+    // }
   };
 
   handleRegister = () => {
-    debugger;
     this.submitted = true;
-    if (this.validation) {
-      const loginInfo = {
-        user: {
-          userName: this.props.userloginpage.register.userName,
-          email: this.props.userloginpage.register.userName,
-          password: this.props.userloginpage.register.password,
-          image: this.props.userloginpage.register.image,
-          mode: C.REGISTER_MODE
-        },
-        redirectLink: "/dashboard"
-      };
-      this.props.actions.handleLogin(loginInfo);
-    } else {
-      const states = this.props.userloginpage;
-      const validations = this.submitted // if the form has been submitted at least once
-        ? this.validator.validate(states) // then check validity every time we render
-        : this.state.validation; // otherwise just use what's in state
-      console.log(validations);
-      this.mapErrorMessage();
-    }
+    // if (this.validation) {
+    const loginInfo = {
+      user: {
+        userName: this.props.userloginpage.register.userName,
+        email: this.props.userloginpage.register.userName,
+        password: this.props.userloginpage.register.password,
+        image: this.props.userloginpage.register.image,
+        mode: C.REGISTER_MODE
+      },
+      redirectLink: "/dashboard"
+    };
+    this.props.actions.handleLogin(loginInfo);
+    // } else {
+    // const states = this.props.userloginpage;
+    // const validations = this.submitted // if the form has been submitted at least once
+    //   ? this.validator.validate(states) // then check validity every time we render
+    //   : this.state.validation; // otherwise just use what's in state
+    // // console.log(validations);
+    this.mapErrorMessage();
+    // }
   };
 
   handleInputChange = e => {

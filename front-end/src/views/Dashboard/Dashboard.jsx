@@ -29,6 +29,8 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
+import TakeATest from "components/TakeATest";
+import Button from "components/CustomButtons/Button";
 
 import { bugs, website, server } from "variables/general.jsx";
 
@@ -42,7 +44,8 @@ import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardS
 
 class Dashboard extends React.Component {
   state = {
-    value: 0
+    value: 0,
+    openTest: false
   };
   handleChange = (event, value) => {
     this.setState({ value });
@@ -50,6 +53,10 @@ class Dashboard extends React.Component {
 
   handleChangeIndex = index => {
     this.setState({ value: index });
+  };
+
+  handleOpenTest = () => {
+    this.setState({ openTest: !this.state.openTest });
   };
   render() {
     const { classes } = this.props;
@@ -274,6 +281,11 @@ class Dashboard extends React.Component {
             </Card>
           </GridItem>
         </GridContainer>
+        <Button onClick={this.handleOpenTest}>Open full-screen dialog</Button>
+        <TakeATest
+          open={this.state.openTest}
+          handleClose={this.handleOpenTest}
+        />
       </div>
     );
   }
