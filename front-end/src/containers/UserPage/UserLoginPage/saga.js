@@ -7,7 +7,6 @@ const appSession = new AppSession();
 // Individual exports for testing
 export function* fetchUserLogin(action) {
   try {
-    yield put({ type: C.START_LOADING });
     const apiReponse = yield call(request.fetchUserLogin, action.payload.user);
     const { apiResult, data } = apiReponse;
     const { user, usergroup } = data;
@@ -24,8 +23,6 @@ export function* fetchUserLogin(action) {
     }
   } catch (e) {
     yield put({ type: C.LOGIN_REQUEST_FAIL, message: e.message });
-  } finally {
-    yield put({ type: C.END_LOADING });
   }
 }
 

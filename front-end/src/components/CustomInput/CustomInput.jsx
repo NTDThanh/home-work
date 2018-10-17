@@ -13,7 +13,6 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 // core components
 import customInputStyle from "assets/jss/material-dashboard-react/components/customInputStyle.jsx";
 import messages from "../../containers/UserPage/UserLoginPage/messages";
-import shortid from "shortid";
 
 function CustomInput({ ...props }) {
   const {
@@ -23,10 +22,11 @@ function CustomInput({ ...props }) {
     id,
     labelProps,
     inputProps,
-    errorTexts = [],
+    error,
+    errorTexts,
     success
   } = props;
-  const error = errorTexts && errorTexts.length > 0;
+
   const labelClasses = classNames({
     [" " + classes.labelRootError]: error,
     [" " + classes.labelRootSuccess]: success && !error
@@ -60,7 +60,6 @@ function CustomInput({ ...props }) {
           underline: underlineClasses
         }}
         id={id}
-        error={error}
         {...inputProps}
       />
       {error ? (
@@ -68,7 +67,7 @@ function CustomInput({ ...props }) {
           <Clear className={classes.feedback + " " + classes.labelRootError} />
           <FormHelperText className={classes.inputErrorText}>
             {errorTexts.map(messages => {
-              return <p key={shortid.generate()}>{messages}</p>;
+              return <p>{messages}</p>;
             })}
           </FormHelperText>
         </React.Fragment>
