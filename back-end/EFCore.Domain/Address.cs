@@ -11,7 +11,7 @@ namespace EFCore.Domain
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AddressNo { get; set; }
-        public string AddressName { get; set; }
+        public string AddressNames { get; set; }
         public County County { get; set; }
         public City City { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
