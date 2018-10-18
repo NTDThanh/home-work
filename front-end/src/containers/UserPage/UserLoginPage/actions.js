@@ -39,17 +39,3 @@ export function switchMode(currentMode) {
     payload: { mode }
   };
 }
-
-export function startLoading() {
-  return {
-    type: C.START_LOADING,
-    payload: { loading: true }
-  };
-}
-
-export function endLoading() {
-  return {
-    type: C.END_LOADING,
-    payload: { loading: false }
-  };
-}

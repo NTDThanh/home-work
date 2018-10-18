@@ -16,7 +16,6 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import injectSaga from "utils/injectSaga";
 import injectReducer from "utils/injectReducer";
 // core components
-import { required } from "utils/validationMessages";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
@@ -33,7 +32,6 @@ import avatar from "assets/img/faces/student-avarta.png";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 // React animation
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-import FormValidator from "../../../utils/validator";
 
 const styles = {
   loginpagecontainer: {
@@ -282,13 +280,11 @@ export class UserLoginPage extends React.PureComponent {
                         formControlProps={{
                           fullWidth: true
                         }}
-                        required
                         inputProps={{
                           type: "email",
                           onChange: this.handleRegisterInputChange,
                           name: "email",
-                          value: userloginpage.register.email,
-                          required: true
+                          value: userloginpage.register.email
                         }}
                       />
                     </GridItem>

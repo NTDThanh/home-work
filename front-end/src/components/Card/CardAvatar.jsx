@@ -11,7 +11,6 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import cardAvatarStyle from "assets/jss/material-dashboard-react/components/cardAvatarStyle.jsx";
 import Button from "@material-ui/core/Button";
 import AddAPhoto from "@material-ui/icons/AddAPhoto";
-import loadImage from "blueimp-load-image";
 
 const styles = {
   buttonPick: {
@@ -24,12 +23,12 @@ const styles = {
     width: "100%",
     height: "100%",
     opacity: 0,
-    zIndex: 9999
+    zIndex: 999
   },
   buttonUpload: {
     color: "white",
     position: "absolute",
-    top: 20,
+    top: 0,
     bottom: 0,
     right: 0,
     left: 0,
@@ -40,43 +39,7 @@ const styles = {
 class CardAvatar extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      image: ""
-    };
   }
-
-  // #region Handle resize image
-  handlePickImage = e => {
-    const { target } = e;
-    if (!target) return;
-    if (!target.files[0]) return;
-    const imageName = target.files[0].name;
-    const checkExtension = /\.(jpg|jpeg|png)$/i;
-    // If is not imagefile retrun
-    if (!checkExtension.test(imageName)) {
-      return;
-    }
-    this.handleResizeAndRotationImage(target.files[0]);
-  };
-
-  handleResizeAndRotationImage = file => {
-    loadImage(
-      file,
-      canvas => {
-        this.handleAddImage(canvas);
-      },
-      { maxWidth: 130, maxHeight: 130, canvas: true, orientation: true } // Options
-    );
-  };
-
-  handleAddImage = canvas => {
-    if (this.props.isUpload) {
-      // Save canvas to state
-      const binary = canvas.toDataURL();
-      this.props.handlePickImage(binary);
-    }
-  };
-
   render() {
     const {
       classes,
@@ -93,17 +56,10 @@ class CardAvatar extends React.PureComponent {
       [classes.cardAvatarPlain]: plain,
       [className]: className !== undefined
     });
-    const avartarBackground = this.props.image
-      ? {
-          backgroundImage: `url(${this.props.image})`,
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center"
-        }
-      : { backgroundColor: "#00acc1" };
     return (
       <div
         className={cardAvatarClasses}
-        style={isUpload && avartarBackground}
+        style={isUpload && { backgroundColor: "#00acc1" }}
         {...rest}
       >
         {children}
@@ -111,13 +67,9 @@ class CardAvatar extends React.PureComponent {
           <div>
             <Button style={styles.buttonUpload}>
               <AddAPhoto />
+              Upload Image
             </Button>
-            <input
-              style={styles.buttonPick}
-              type="file"
-              name="upload"
-              onChange={this.handlePickImage}
-            />
+            <input style={styles.buttonPick} type="file" name="upload" />
           </div>
         ) : null}
       </div>
