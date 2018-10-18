@@ -43,20 +43,20 @@ const styles = {
 export class UserLoginPage extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.validator = new FormValidator([
-      {
-        field: "account",
-        method: "isEmpty",
-        validWhen: false,
-        message: required()
-      },
-      {
-        field: "password",
-        method: "isEmpty",
-        validWhen: false,
-        message: required()
-      }
-    ]);
+    // this.validator = new FormValidator([
+    //   {
+    //     field: "account",
+    //     method: "isEmpty",
+    //     validWhen: false,
+    //     message: required()
+    //   },
+    //   {
+    //     field: "password",
+    //     method: "isEmpty",
+    //     validWhen: false,
+    //     message: required()
+    //   }
+    // ]);
     this.state = {
       // validation: this.validator.valid()
     };

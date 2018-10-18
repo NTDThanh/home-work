@@ -16,10 +16,23 @@ import Slide from "@material-ui/core/Slide";
 
 const styles = {
   appBar: {
-    position: "relative"
+    position: "relative",
+    backgroundColor: "rgba(0,0,0,0.9)"
   },
   flex: {
     flex: 1
+  },
+  buttonClose: {
+    float: "right",
+    maxWidth: 70
+  },
+  paperScrollPaper: {
+    backgroundColor: "rgba(0,0,0,0.9)",
+    border: "6px solid #ccc"
+  },
+  paperFullScreen: {
+    backgroundColor: "rgba(0,0,0,0.9)",
+    border: "6px solid #ccc"
   }
 };
 
@@ -37,22 +50,17 @@ class TakeATest extends React.Component {
           open={this.props.open}
           onClose={this.props.handleClose}
           TransitionComponent={Transition}
+          className={(classes.paperScrollPaper, classes.paperFullScreen)}
         >
-          <AppBar className={classes.appBar}>
-            <Toolbar>
-              <Typography variant="h6" color="inherit" className={classes.flex}>
-                {exercise.name}
-              </Typography>
-              <IconButton
-                color="inherit"
-                onClick={this.props.handleClose}
-                aria-label="Close"
-              >
-                <CloseIcon />
-              </IconButton>
-            </Toolbar>
-          </AppBar>
-          <List>
+          <IconButton
+            color="inherit"
+            onClick={this.props.handleClose}
+            aria-label="Close"
+            className={classes.buttonClose}
+          >
+            <CloseIcon />
+          </IconButton>
+          {/* <List>
             <ListItem button>
               <ListItemText primary="Phone ringtone" secondary="Titania" />
             </ListItem>
@@ -63,7 +71,7 @@ class TakeATest extends React.Component {
                 secondary="Tethys"
               />
             </ListItem>
-          </List>
+          </List> */}
         </Dialog>
       </div>
     );

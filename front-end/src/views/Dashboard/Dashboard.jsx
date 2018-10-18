@@ -45,7 +45,7 @@ import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardS
 class Dashboard extends React.Component {
   state = {
     value: 0,
-    openTest: false
+    openTest: true
   };
   handleChange = (event, value) => {
     this.setState({ value });

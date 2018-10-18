@@ -8,7 +8,6 @@ const appSession = new AppSession();
 export function* fetchUserLogin(action) {
   try {
     yield put({ type: C.START_LOADING });
-    debugger
     const apiReponse = yield call(request.fetchUserLogin, action.payload.user);
     const { apiResult, data } = apiReponse;
     const { user, usergroup } = data;
