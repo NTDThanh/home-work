@@ -13,6 +13,8 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
+import GridContainer from "components/Grid/GridContainer.jsx";
+import GridItem from "components/Grid/GridItem.jsx";
 
 const styles = {
   appBar: {
@@ -60,6 +62,18 @@ class TakeATest extends React.Component {
           >
             <CloseIcon />
           </IconButton>
+          <GridContainer
+            direction="row"
+            justify="space-around"
+            alignItems="center"
+          >
+            <GridItem xs={12} sm={12} md={10}>
+              <h1>Item 1</h1>
+            </GridItem>
+            <GridItem xs={12} sm={12} md={10}>
+              <h1>Item 1</h1>
+            </GridItem>
+          </GridContainer>
           {/* <List>
             <ListItem button>
               <ListItemText primary="Phone ringtone" secondary="Titania" />
