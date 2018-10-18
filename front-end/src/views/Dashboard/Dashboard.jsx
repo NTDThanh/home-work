@@ -29,6 +29,7 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
+import CountDownClock from "components/CountDown";
 
 import { bugs, website, server } from "variables/general.jsx";
 
@@ -51,6 +52,11 @@ class Dashboard extends React.Component {
   handleChangeIndex = index => {
     this.setState({ value: index });
   };
+
+  handleOverTime = () => {
+    alert("Over time");
+  };
+
   render() {
     const { classes } = this.props;
     return (
@@ -114,6 +120,8 @@ class Dashboard extends React.Component {
             </Card>
           </GridItem>
           <GridItem xs={12} sm={6} md={3}>
+            <h1>Countdown</h1>
+            <CountDownClock seconds={3} onCompelete={this.handleOverTime} />
             <Card>
               <CardHeader color="info" stats icon>
                 <CardIcon color="info">
