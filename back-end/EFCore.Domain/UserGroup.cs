@@ -16,7 +16,9 @@ namespace EFCore.Domain
         public string Description { get; set; }
         public string Menu { get; set; }
         public string DefaultRedirect { get; set; }
-        public List<Users> Users { get; set; }
+        public virtual List<Users> Users { get; set; }
+
+        //Colum common
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public int CreateBy { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]

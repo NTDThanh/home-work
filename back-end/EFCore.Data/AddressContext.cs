@@ -14,9 +14,6 @@ namespace EFCore.Data
                 => category == DbLoggerCategory.Database.Command.Name
                && level == LogLevel.Information, true) });
 
-        //public DbSet<City> CityInfo { get; set; }
-        //public DbSet<Address> Address { get; set; }
-
         // LamVu Code
         public DbSet<Comments> Comments { get; set; }
         public DbSet<Answers> Answers { get; set; }

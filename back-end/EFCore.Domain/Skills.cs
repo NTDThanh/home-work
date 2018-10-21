@@ -15,6 +15,9 @@ namespace EFCore.Domain
         public string Image { get; set; }
         public string Description { get; set; }
         public string Technology { get; set; }
+        public virtual Levels Levels { get; set; }
+
+        //Colum common
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public int CreateBy { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]

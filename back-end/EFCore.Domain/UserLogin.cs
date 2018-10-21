@@ -17,6 +17,8 @@ namespace EFCore.Domain
         public string LoginStatus { get; set; }
         public string Ip { get; set; }
         public string Device { get; set; }
+
+        //Colum common
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public int CreateBy { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]

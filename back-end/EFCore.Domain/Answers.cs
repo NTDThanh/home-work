@@ -14,7 +14,9 @@ namespace EFCore.Domain
         public string Detail { get; set; }
         public string Note { get; set; }
         public bool IsCorrect { get; set; }
-        public Questions Questions { get; set; }
+        public virtual Questions Questions { get; set; }
+
+        //Colum common
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public int CreateBy { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]

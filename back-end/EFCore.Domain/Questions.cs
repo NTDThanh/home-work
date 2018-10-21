@@ -14,11 +14,13 @@ namespace EFCore.Domain
         public string Description { get; set; }
         public string Detail { get; set; }
         public string CountDown { get; set; }
-        public Comments Comments { get; set; }
-        public Answers Answers { get; set; }
-        public Skills Skills { get; set; }
-        public Levels Level { get; set; }
-        public Exercises Exercises { get; set; }
+        public virtual List<Comments> Comments { get; set; }
+        public virtual List<Answers> Answers { get; set; }
+        public virtual List<Skills> Skills { get; set; }
+        public virtual List<Levels> Level { get; set; }
+        public virtual List<Exercises> Exercises { get; set; }
+
+        //Colum common
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public int CreateBy { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]

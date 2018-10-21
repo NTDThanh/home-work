@@ -13,9 +13,11 @@ namespace EFCore.Domain
         public int Id { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
-        public Questions Questions { get; set; }
-        public Skills Skills { get; set; }
-        public Levels Level { get; set; }
+        public virtual List<Questions> Questions { get; set; }
+        public virtual Skills Skills { get; set; }
+        public virtual Levels Level { get; set; }
+
+        //Colum common
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public int CreateBy { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]

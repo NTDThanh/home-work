@@ -19,8 +19,10 @@ namespace EFCore.Domain
         public string Image { get; set; }
         public string Description { get; set; }
         public string Phone { get; set; }
-        public List<Skills> Skills { get; set; }
-        public List<UserGroup> UserGroup { get; set; }
+        public virtual List<Skills> Skills { get; set; }
+        public virtual List<UserGroup> UserGroup { get; set; }
+
+        //Colum common
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public int CreateBy { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]

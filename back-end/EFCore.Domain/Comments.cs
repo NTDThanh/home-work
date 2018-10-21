@@ -12,10 +12,12 @@ namespace EFCore.Domain
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Detail { get; set; }
-        public Users Users { get; set; }
-        public Questions Questions { get; set; }
-        public Exercises Exercises { get; set; }
-        public Courses Courses { get; set; }
+        public virtual Users Users { get; set; }
+        public virtual Questions Questions { get; set; }
+        public virtual Exercises Exercises { get; set; }
+        public virtual Courses Courses { get; set; }
+
+        //Colum common
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public int CreateBy { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
