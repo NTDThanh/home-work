@@ -14,7 +14,8 @@ const initialState = {};
 const store = configureStore(initialState, hist);
 const appSession = new AppSession();
 // [Todo] check login method
-const isLogin = appSession.checkLogin();
+// const isLogin = appSession.checkLogin();
+const isLogin = true;
 
 ReactDOM.render(
   <Provider store={store}>
