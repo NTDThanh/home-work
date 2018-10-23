@@ -19,104 +19,559 @@ namespace EFCore.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("EFCore.Domain.Address", b =>
+            modelBuilder.Entity("EFCore.Domain.Answers", b =>
                 {
-                    b.Property<int>("AddressNo")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AddressName");
+                    b.Property<DateTime?>("CreateAt")
+                        .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<int?>("CityCode");
+                    b.Property<int>("CreateBy")
+                        .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<int?>("CountyId");
+                    b.Property<string>("Detail");
+
+                    b.Property<int?>("ExerciseResultId");
+
+                    b.Property<bool>("IsCorrect");
 
                     b.Property<bool>("IsDelete");
 
-                    b.Property<byte[]>("Timestamp")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
+                    b.Property<DateTime?>("LastUpdate");
 
-                    b.Property<DateTime?>("UpdateAt")
-                        .ValueGeneratedOnAddOrUpdate();
+                    b.Property<string>("Note");
 
-                    b.HasKey("AddressNo");
-
-                    b.HasIndex("CityCode");
-
-                    b.HasIndex("CountyId");
-
-                    b.ToTable("Address");
-                });
-
-            modelBuilder.Entity("EFCore.Domain.City", b =>
-                {
-                    b.Property<int>("CityCode");
-
-                    b.Property<string>("FullName");
-
-                    b.Property<bool>("IsDelete");
-
-                    b.Property<string>("NameFormated")
-                        .IsConcurrencyToken();
-
-                    b.Property<byte[]>("Timestamp")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
+                    b.Property<int?>("QuestionsId");
 
                     b.Property<DateTime?>("UpdateAt");
 
-                    b.HasKey("CityCode");
+                    b.Property<int>("UpdateBy");
 
-                    b.ToTable("CityInfo");
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExerciseResultId");
+
+                    b.HasIndex("QuestionsId");
+
+                    b.ToTable("Answers");
                 });
 
-            modelBuilder.Entity("EFCore.Domain.County", b =>
+            modelBuilder.Entity("EFCore.Domain.Comments", b =>
                 {
-                    b.Property<int?>("CountyId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AliasName");
+                    b.Property<int?>("CoursesId");
 
-                    b.Property<int?>("CityCode");
+                    b.Property<DateTime?>("CreateAt")
+                        .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<string>("FullName");
+                    b.Property<int>("CreateBy")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<string>("Detail");
+
+                    b.Property<int?>("ExercisesId");
 
                     b.Property<bool>("IsDelete");
 
-                    b.Property<string>("NameFormated")
-                        .HasMaxLength(255);
+                    b.Property<DateTime?>("LastUpdate");
 
-                    b.Property<byte[]>("Timestamp")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
+                    b.Property<int?>("QuestionsId");
 
                     b.Property<DateTime?>("UpdateAt");
 
-                    b.HasKey("CountyId");
+                    b.Property<int>("UpdateBy");
 
-                    b.HasIndex("CityCode");
+                    b.Property<int?>("UsersId");
 
-                    b.ToTable("Countys");
+                    b.HasKey("Id");
+
+                    b.HasIndex("CoursesId");
+
+                    b.HasIndex("ExercisesId");
+
+                    b.HasIndex("QuestionsId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("EFCore.Domain.Address", b =>
+            modelBuilder.Entity("EFCore.Domain.Courses", b =>
                 {
-                    b.HasOne("EFCore.Domain.City", "City")
-                        .WithMany()
-                        .HasForeignKey("CityCode");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.HasOne("EFCore.Domain.County", "County")
-                        .WithMany()
-                        .HasForeignKey("CountyId");
+                    b.Property<DateTime?>("CreateAt")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<int>("CreateBy")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Image");
+
+                    b.Property<bool>("IsDelete");
+
+                    b.Property<DateTime?>("LastUpdate");
+
+                    b.Property<string>("Name");
+
+                    b.Property<DateTime?>("UpdateAt");
+
+                    b.Property<int>("UpdateBy");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("EFCore.Domain.County", b =>
+            modelBuilder.Entity("EFCore.Domain.ExerciseResult", b =>
                 {
-                    b.HasOne("EFCore.Domain.City", "City")
-                        .WithMany("County")
-                        .HasForeignKey("CityCode");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("CreateAt")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<int>("CreateBy")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<bool>("IsDelete");
+
+                    b.Property<DateTime?>("LastUpdate");
+
+                    b.Property<string>("Point");
+
+                    b.Property<string>("Rank");
+
+                    b.Property<DateTime?>("UpdateAt");
+
+                    b.Property<int>("UpdateBy");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ExerciseResult");
+                });
+
+            modelBuilder.Entity("EFCore.Domain.Exercises", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CoursesId");
+
+                    b.Property<DateTime?>("CreateAt")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<int>("CreateBy")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<int?>("ExerciseResultId");
+
+                    b.Property<string>("Image");
+
+                    b.Property<bool>("IsDelete");
+
+                    b.Property<DateTime?>("LastUpdate");
+
+                    b.Property<int?>("LevelId");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int?>("SkillsId");
+
+                    b.Property<DateTime?>("UpdateAt");
+
+                    b.Property<int>("UpdateBy");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CoursesId");
+
+                    b.HasIndex("ExerciseResultId");
+
+                    b.HasIndex("LevelId");
+
+                    b.HasIndex("SkillsId");
+
+                    b.ToTable("Exercises");
+                });
+
+            modelBuilder.Entity("EFCore.Domain.ExercisesQuestions", b =>
+                {
+                    b.Property<int>("ExercisesId");
+
+                    b.Property<int>("QuestionsId");
+
+                    b.HasKey("ExercisesId", "QuestionsId");
+
+                    b.HasIndex("QuestionsId");
+
+                    b.ToTable("ExercisesQuestions");
+                });
+
+            modelBuilder.Entity("EFCore.Domain.Levels", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CoursesId");
+
+                    b.Property<DateTime?>("CreateAt")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<int>("CreateBy")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Image");
+
+                    b.Property<bool>("IsDelete");
+
+                    b.Property<DateTime?>("LastUpdate");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int?>("QuestionsId");
+
+                    b.Property<DateTime?>("UpdateAt");
+
+                    b.Property<int>("UpdateBy");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CoursesId");
+
+                    b.HasIndex("QuestionsId");
+
+                    b.ToTable("Levels");
+                });
+
+            modelBuilder.Entity("EFCore.Domain.Questions", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CountDown");
+
+                    b.Property<DateTime?>("CreateAt")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<int>("CreateBy")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Detail");
+
+                    b.Property<int?>("ExerciseResultId");
+
+                    b.Property<bool>("IsDelete");
+
+                    b.Property<DateTime?>("LastUpdate");
+
+                    b.Property<DateTime?>("UpdateAt");
+
+                    b.Property<int>("UpdateBy");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExerciseResultId");
+
+                    b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("EFCore.Domain.Skills", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("CreateAt")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<int>("CreateBy")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Image");
+
+                    b.Property<bool>("IsDelete");
+
+                    b.Property<DateTime?>("LastUpdate");
+
+                    b.Property<int?>("LevelsId");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int?>("QuestionsId");
+
+                    b.Property<string>("Technology");
+
+                    b.Property<DateTime?>("UpdateAt");
+
+                    b.Property<int>("UpdateBy");
+
+                    b.Property<int?>("UsersId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LevelsId");
+
+                    b.HasIndex("QuestionsId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("Skills");
+                });
+
+            modelBuilder.Entity("EFCore.Domain.UserGroup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("CreateAt")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<int>("CreateBy")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<string>("DefaultRedirect");
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("IsDelete");
+
+                    b.Property<DateTime?>("LastUpdate");
+
+                    b.Property<string>("Menu");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Role");
+
+                    b.Property<DateTime?>("UpdateAt");
+
+                    b.Property<int>("UpdateBy");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserGroup");
+                });
+
+            modelBuilder.Entity("EFCore.Domain.UserLogin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AuthenticationCode");
+
+                    b.Property<DateTime?>("CreateAt")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<int>("CreateBy")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<string>("Device");
+
+                    b.Property<string>("Ip");
+
+                    b.Property<bool>("IsDelete");
+
+                    b.Property<DateTime?>("LastUpdate");
+
+                    b.Property<DateTime>("LogAt");
+
+                    b.Property<string>("LoginStatus");
+
+                    b.Property<DateTime?>("UpdateAt");
+
+                    b.Property<int?>("UpdateBy");
+
+                    b.Property<int?>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserLogin");
+                });
+
+            modelBuilder.Entity("EFCore.Domain.Users", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address");
+
+                    b.Property<DateTime?>("CreateAt")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<int>("CreateBy")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<string>("Description");
+
+                    b.Property<int?>("ExerciseResultId");
+
+                    b.Property<string>("FullName");
+
+                    b.Property<string>("Image");
+
+                    b.Property<bool>("IsDelete");
+
+                    b.Property<DateTime?>("LastUpdate");
+
+                    b.Property<string>("Mail");
+
+                    b.Property<string>("Password");
+
+                    b.Property<string>("Phone");
+
+                    b.Property<string>("Slat");
+
+                    b.Property<DateTime?>("UpdateAt");
+
+                    b.Property<int>("UpdateBy");
+
+                    b.Property<int?>("UserGroupId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExerciseResultId");
+
+                    b.HasIndex("UserGroupId");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("EFCore.Domain.Answers", b =>
+                {
+                    b.HasOne("EFCore.Domain.ExerciseResult")
+                        .WithMany("Answer")
+                        .HasForeignKey("ExerciseResultId");
+
+                    b.HasOne("EFCore.Domain.Questions", "Questions")
+                        .WithMany("Answers")
+                        .HasForeignKey("QuestionsId");
+                });
+
+            modelBuilder.Entity("EFCore.Domain.Comments", b =>
+                {
+                    b.HasOne("EFCore.Domain.Courses", "Courses")
+                        .WithMany()
+                        .HasForeignKey("CoursesId");
+
+                    b.HasOne("EFCore.Domain.Exercises", "Exercises")
+                        .WithMany()
+                        .HasForeignKey("ExercisesId");
+
+                    b.HasOne("EFCore.Domain.Questions", "Questions")
+                        .WithMany("Comments")
+                        .HasForeignKey("QuestionsId");
+
+                    b.HasOne("EFCore.Domain.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("UsersId");
+                });
+
+            modelBuilder.Entity("EFCore.Domain.Exercises", b =>
+                {
+                    b.HasOne("EFCore.Domain.Courses")
+                        .WithMany("Exercises")
+                        .HasForeignKey("CoursesId");
+
+                    b.HasOne("EFCore.Domain.ExerciseResult")
+                        .WithMany("Exercises")
+                        .HasForeignKey("ExerciseResultId");
+
+                    b.HasOne("EFCore.Domain.Levels", "Level")
+                        .WithMany()
+                        .HasForeignKey("LevelId");
+
+                    b.HasOne("EFCore.Domain.Skills", "Skills")
+                        .WithMany()
+                        .HasForeignKey("SkillsId");
+                });
+
+            modelBuilder.Entity("EFCore.Domain.ExercisesQuestions", b =>
+                {
+                    b.HasOne("EFCore.Domain.Exercises", "Exercises")
+                        .WithMany("ExercisesQuestions")
+                        .HasForeignKey("ExercisesId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("EFCore.Domain.Questions", "Questions")
+                        .WithMany("ExercisesQuestions")
+                        .HasForeignKey("QuestionsId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("EFCore.Domain.Levels", b =>
+                {
+                    b.HasOne("EFCore.Domain.Courses", "Courses")
+                        .WithMany("Level")
+                        .HasForeignKey("CoursesId");
+
+                    b.HasOne("EFCore.Domain.Questions")
+                        .WithMany("Level")
+                        .HasForeignKey("QuestionsId");
+                });
+
+            modelBuilder.Entity("EFCore.Domain.Questions", b =>
+                {
+                    b.HasOne("EFCore.Domain.ExerciseResult")
+                        .WithMany("Questions")
+                        .HasForeignKey("ExerciseResultId");
+                });
+
+            modelBuilder.Entity("EFCore.Domain.Skills", b =>
+                {
+                    b.HasOne("EFCore.Domain.Levels", "Levels")
+                        .WithMany("Skills")
+                        .HasForeignKey("LevelsId");
+
+                    b.HasOne("EFCore.Domain.Questions")
+                        .WithMany("Skills")
+                        .HasForeignKey("QuestionsId");
+
+                    b.HasOne("EFCore.Domain.Users")
+                        .WithMany("Skills")
+                        .HasForeignKey("UsersId");
+                });
+
+            modelBuilder.Entity("EFCore.Domain.UserLogin", b =>
+                {
+                    b.HasOne("EFCore.Domain.Users", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("EFCore.Domain.Users", b =>
+                {
+                    b.HasOne("EFCore.Domain.ExerciseResult")
+                        .WithMany("User")
+                        .HasForeignKey("ExerciseResultId");
+
+                    b.HasOne("EFCore.Domain.UserGroup", "UserGroup")
+                        .WithMany("Users")
+                        .HasForeignKey("UserGroupId");
                 });
 #pragma warning restore 612, 618
         }

@@ -26,7 +26,7 @@ namespace EFCore.Data
         public DbSet<UserGroup> UserGroup { get; set; }
         public DbSet<UserLogin> UserLogin { get; set; }
         public DbSet<Users> Users { get; set; }
-
+        public DbSet<ExercisesQuestions> ExercisesQuestions { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -34,13 +34,25 @@ namespace EFCore.Data
             optionsBuilder
                 .UseLoggerFactory(MyConsoleLoggerFactory)
                 .EnableSensitiveDataLogging(true)
-                .UseSqlServer(@"Data Source=103.28.37.225;Initial Catalog=EFCore; Persist Security Info=True;User ID=VNETTEST;Password=abc123!");
+                .UseSqlServer(@"data source = DESKTOP-A9IR48I\SQLEXPRESS;initial catalog = dbtest;persist security info=True; 
+   Integrated Security=SSPI;");
             //.UseSqlServer(@"Data Source=192.168.6.235\SQLEXPRESS;Initial Catalog=EFCore; Persist Security Info=True;User ID=efcoreadmin;Password=efcorepass");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ExercisesQuestions>()
+           .HasKey(t => new { t.ExercisesId, t.QuestionsId });
 
+            modelBuilder.Entity<ExercisesQuestions>()
+                .HasOne(pt => pt.Exercises)
+                .WithMany(p => p.ExercisesQuestions)
+                .HasForeignKey(pt => pt.ExercisesId);
+
+            modelBuilder.Entity<ExercisesQuestions>()
+                .HasOne(pt => pt.Questions)
+                .WithMany(t => t.ExercisesQuestions)
+                .HasForeignKey(pt => pt.QuestionsId);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace EFCore.Domain
         public string Description { get; set; }
         public string Phone { get; set; }
         public virtual List<Skills> Skills { get; set; }
-        public virtual List<UserGroup> UserGroup { get; set; }
+        public virtual UserGroup UserGroup { get; set; }
 
         //Colum common
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]

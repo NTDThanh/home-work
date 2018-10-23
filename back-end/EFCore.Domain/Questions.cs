@@ -18,7 +18,7 @@ namespace EFCore.Domain
         public virtual List<Answers> Answers { get; set; }
         public virtual List<Skills> Skills { get; set; }
         public virtual List<Levels> Level { get; set; }
-        public virtual List<Exercises> Exercises { get; set; }
+        public virtual List<ExercisesQuestions> ExercisesQuestions { get; set; }
 
         //Colum common
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
