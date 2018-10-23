@@ -10,6 +10,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 
 const styles = theme => ({
   questionContains: {
@@ -84,6 +86,7 @@ const styles = theme => ({
   },
   buttonNextQuestion: {
     float: 'right',
+    textTransform: 'none',
   },
 });
 
@@ -130,12 +133,18 @@ class Question extends React.Component {
       <Paper className={classes.questionContains} elevation={1}>
         <div className={classes.questionTitle}>
           <p className={classes.questionTitleTextLeft}>
-            Skill assessment:
+            <FormattedMessage {...messages.skillAssessment} />
             <b>{` ${this.props.skills || 'Other skill'}`}</b>
           </p>
           <p className={classes.questionTitleTextRight}>
-            {`Approximately ${this.state.approximatelyQuestions ||
-              0} questions remaining`}
+            <FormattedMessage
+              {...messages.approximatelyQuestion}
+              values={{
+                countQuestion: `${this.state.approximatelyQuestions || 0}`,
+              }}
+            />
+            {/* {`Approximately ${this.state.approximatelyQuestions ||
+              0} questions remaining`} */}
           </p>
           <LinearProgress
             variant="determinate"
@@ -145,7 +154,7 @@ class Question extends React.Component {
         </div>
         <Typography variant="h5" gutterBottom className={classes.questionText}>
           {questions.detail ||
-            `If you are creating an application where your goal is to separate the logic from the user interface, what should you create?`}
+            `Sample question: If you are creating an application where your goal is to separate the logic from the user interface, what should you create?`}
         </Typography>
         <List component="nav" className={classes.answerList}>
           {questions.answers.map(answer => {
@@ -166,10 +175,10 @@ class Question extends React.Component {
           <Button
             variant="contained"
             size="large"
-            color="primaryColor"
+            color="primary"
             className={classes.buttonNextQuestion}
           >
-            Next Question
+            <FormattedMessage {...messages.nextQuestion} />
           </Button>
           <div style={{ clear: 'both' }} />
         </div>
