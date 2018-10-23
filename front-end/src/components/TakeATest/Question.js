@@ -12,9 +12,11 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+import CountDownClock from '../CountDown/CountDownClock';
 
 const styles = theme => ({
   questionContains: {
+    position: 'relative',
     paddingLeft: 0,
     paddingRight: 0,
     color: '#181818',
@@ -73,6 +75,7 @@ const styles = theme => ({
     borderRadius: '5px',
     width: '100%',
     marginBottom: '5px',
+    cursor: 'pointer',
   },
   answerItemText: {
     fontSize: '18px',
@@ -127,10 +130,15 @@ class Question extends React.Component {
     console.log('ansewrId', ansewrId);
   };
 
+  handleTimeUp = () => {
+    alert('Time Up !');
+  };
+
   render() {
     const { classes, questions = { answers: mockAnswer } } = this.props;
     return (
       <Paper className={classes.questionContains} elevation={1}>
+        <CountDownClock seconds={5} onComplete={this.handleTimeUp} />
         <div className={classes.questionTitle}>
           <p className={classes.questionTitleTextLeft}>
             <FormattedMessage {...messages.skillAssessment} />

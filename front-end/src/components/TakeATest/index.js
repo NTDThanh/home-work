@@ -34,7 +34,6 @@ const styles = {
   },
   testBackgound: {
     backgroundColor: '#181818 !important',
-    height: '100%',
     color: 'white',
   },
 };
