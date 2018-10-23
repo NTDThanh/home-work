@@ -43,10 +43,32 @@ class CountDownClock extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      complete: 90,
+      complete: 100,
+      seconds: this.props.seconds || 0,
     };
   }
-  handleOnTick = () => {};
+
+  handleOnTick = time => {
+    if (this.state.seconds !== 0) {
+      const timeSpan = 100 - (time.total / 1000 / this.state.seconds) * 100;
+      this.setState({ complete: 100 - timeSpan });
+    }
+  };
+
+  handleTimeUp = () => {
+    this.setState({ complete: 0 });
+    this.props.onComplete;
+  };
+
+  componentDidUpdate(preProps) {
+    if (preProps.seconds !== this.props.seconds) {
+      this.updateSeconds(this.props.seconds);
+    }
+  }
+
+  updateSeconds = seconds => {
+    this.setState({ seconds });
+  };
   render() {
     const { classes } = this.props;
     return (
@@ -64,8 +86,7 @@ class CountDownClock extends React.PureComponent {
         <p className={classes.secondsCountDown}>
           <CountDownSeconds
             seconds={this.props.seconds}
-            seconds={120}
-            onComplete={this.props.handleTimeUp}
+            onComplete={this.handleTimeUp}
             onTick={this.handleOnTick}
           />
         </p>

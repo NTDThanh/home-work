@@ -104,27 +104,16 @@ class Question extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      completed: 0,
+      seconds: 0,
     };
   }
 
   componentDidMount() {
-    this.timer = setInterval(this.progress, 500);
+    setTimeout(() => {
+      this.setState({ seconds: 10 });
+    }, 3000);
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
-
-  progress = () => {
-    // const { completed } = this.state;
-    // if (completed === 100) {
-    //   this.setState({ completed: 0 });
-    // } else {
-    //   const diff = Math.random() * 10;
-    //   this.setState({ completed: Math.min(completed + diff, 100) });
-    // }
-  };
 
   handleListItemClick = (e, ansewrId) => {
     console.log('ansewrId', ansewrId);
@@ -138,7 +127,10 @@ class Question extends React.Component {
     const { classes, questions = { answers: mockAnswer } } = this.props;
     return (
       <Paper className={classes.questionContains} elevation={1}>
-        <CountDownClock seconds={5} onComplete={this.handleTimeUp} />
+        <CountDownClock
+          seconds={this.state.seconds}
+          onComplete={this.handleTimeUp}
+        />
         <div className={classes.questionTitle}>
           <p className={classes.questionTitleTextLeft}>
             <FormattedMessage {...messages.skillAssessment} />

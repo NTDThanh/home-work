@@ -16,6 +16,7 @@ class CountDownSeconds extends React.PureComponent {
   render() {
     return (
       <Countdown
+        controlled={false}
         date={Date.now() + this.props.seconds * 1000 || 0}
         renderer={this.renderer}
         onComplete={this.props.onComplete}
