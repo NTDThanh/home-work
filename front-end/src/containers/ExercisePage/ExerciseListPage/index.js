@@ -77,7 +77,7 @@ export class ExerciseListPage extends React.PureComponent {
                   <FormattedMessage {...messages.exerciseListPageTitle} />
                 </h4>
                 {/* <p className={classes.cardCategoryWhite}>
-                
+
                 </p> */}
               </CardHeader>
               <CardBody>

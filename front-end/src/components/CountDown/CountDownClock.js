@@ -45,13 +45,15 @@ class CountDownClock extends React.PureComponent {
     this.state = {
       complete: 100,
       seconds: this.props.seconds || 0,
+      timeRemaining: 0,
     };
   }
 
   handleOnTick = time => {
-    if (this.state.seconds !== 0) {
-      const timeSpan = 100 - (time.total / 1000 / this.state.seconds) * 100;
-      this.setState({ complete: 100 - timeSpan });
+    if (!this.props.stop && this.state.seconds !== 0) {
+      const seconds = time.total / 1000;
+      const timeSpan = 100 - (seconds / this.state.seconds) * 100;
+      this.setState({ complete: 100 - timeSpan, timeRemaining: seconds });
     }
   };
 
@@ -83,12 +85,22 @@ class CountDownClock extends React.PureComponent {
             className={{ colorSecondary: classes.colorSecondary }}
           />
         </div>
-        <p className={classes.secondsCountDown}>
+        <p
+          className={classes.secondsCountDown}
+          style={{ display: this.props.stop ? 'none' : 'block' }}
+        >
           <CountDownSeconds
+            controlled={this.props.stop}
             seconds={this.props.seconds}
             onComplete={this.handleTimeUp}
             onTick={this.handleOnTick}
           />
+        </p>
+        <p
+          className={classes.secondsCountDown}
+          style={{ display: this.props.stop ? 'block' : 'none' }}
+        >
+          {this.state.timeRemaining}
         </p>
       </div>
     );
@@ -98,6 +110,7 @@ class CountDownClock extends React.PureComponent {
 CountDownClock.propTypes = {
   seconds: PropTypes.number.isRequired,
   onComplete: PropTypes.func,
+  stop: PropTypes.bool,
 };
 
 export default withStyles(styles)(CountDownClock);

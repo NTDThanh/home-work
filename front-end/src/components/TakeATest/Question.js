@@ -93,48 +93,67 @@ const styles = theme => ({
   },
 });
 
-const mockAnswer = [
-  'An HTML/CSS application',
-  'A WPF application',
-  'A windows form application',
-  'A WCF application',
-];
-
 class Question extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       seconds: 0,
+      completed: 0,
+      stopCountDown: false,
+      timeRemaining: 0,
+      exercise: props.exercise || {},
+      currentQuestionIndex: 0,
+      approximatelyQuestions: 0,
+      showNextQuestion: false,
     };
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({ seconds: 10 });
-    }, 3000);
+  componentDidUpdate(preProps) {
+    this.synProps(preProps);
   }
 
+  synProps = preProps => {
+    // this.setState({ exercise: this.props.exercise });
+  };
 
-  handleListItemClick = (e, ansewrId) => {
-    console.log('ansewrId', ansewrId);
+  handlePickAnswer = (e, ansewrId) => {
+    this.stopCountDown();
   };
 
   handleTimeUp = () => {
-    alert('Time Up !');
+    this.setState({ showNextQuestion: true });
+  };
+
+  hanldePickAnswer = answerId => {};
+
+  handleStopCountDown = timeRemaining => {
+    this.setState({ timeRemaining });
+  };
+
+  stopCountDown = () => {
+    this.setState({ stopCountDown: true });
+  };
+
+  getCurrentQuestion = () => {
+    const { questions = [] } = this.state.exercise;
+    return questions[this.state.currentQuestionIndex];
   };
 
   render() {
-    const { classes, questions = { answers: mockAnswer } } = this.props;
+    const { classes } = this.props;
+    const currentQuestion = this.getCurrentQuestion();
     return (
       <Paper className={classes.questionContains} elevation={1}>
         <CountDownClock
-          seconds={this.state.seconds}
+          seconds={currentQuestion.countDown}
           onComplete={this.handleTimeUp}
+          stop={this.state.stopCountDown}
+          handleStop={this.handleStopCountDown}
         />
         <div className={classes.questionTitle}>
           <p className={classes.questionTitleTextLeft}>
             <FormattedMessage {...messages.skillAssessment} />
-            <b>{` ${this.props.skills || 'Other skill'}`}</b>
+            <b>{` ${this.state.exercise.skills || 'Other skill'}`}</b>
           </p>
           <p className={classes.questionTitleTextRight}>
             <FormattedMessage
@@ -143,8 +162,6 @@ class Question extends React.Component {
                 countQuestion: `${this.state.approximatelyQuestions || 0}`,
               }}
             />
-            {/* {`Approximately ${this.state.approximatelyQuestions ||
-              0} questions remaining`} */}
           </p>
           <LinearProgress
             variant="determinate"
@@ -153,18 +170,18 @@ class Question extends React.Component {
           />
         </div>
         <Typography variant="h5" gutterBottom className={classes.questionText}>
-          {questions.detail ||
+          {currentQuestion.detail ||
             `Sample question: If you are creating an application where your goal is to separate the logic from the user interface, what should you create?`}
         </Typography>
         <List component="nav" className={classes.answerList}>
-          {questions.answers.map(answer => {
+          {currentQuestion.answers.map(answer => {
             return (
               <ListItem
-                onClick={event => this.handleListItemClick(event, 1)}
+                onClick={event => this.handlePickAnswer(event, answer.ansewrId)}
                 className={classes.answerItem}
               >
                 <ListItemText
-                  primary={answer}
+                  primary={answer.detail}
                   className={classes.answerItemText}
                 />
               </ListItem>
@@ -175,8 +192,9 @@ class Question extends React.Component {
           <Button
             variant="contained"
             size="large"
-            color="primary"
+            color="secondary"
             className={classes.buttonNextQuestion}
+            disabled={!this.state.showNextQuestion}
           >
             <FormattedMessage {...messages.nextQuestion} />
           </Button>

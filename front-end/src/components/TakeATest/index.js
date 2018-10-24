@@ -35,7 +35,161 @@ const styles = {
   testBackgound: {
     backgroundColor: '#181818 !important',
     color: 'white',
+    minHeight: '100vh',
   },
+};
+
+const mockExercises = {
+  name: 'EF Core',
+  skillsName: 'Entity FrameWork Core 2.1',
+  level: 'Begin',
+  questions: [
+    {
+      id: 1,
+      detail:
+        '1.What do you need to install in order to use EF Core CLI commands?',
+      countDown: 30,
+      answers: [
+        {
+          id: 1,
+          detail: '.NET SDK appropriate for your OS',
+        },
+        {
+          id: 2,
+          detail: 'Visual Studio Code for your OS',
+        },
+        {
+          id: 3,
+          detail: 'Visual Studio 2017 15.3 or higher on Windows only',
+        },
+        {
+          id: 4,
+          detail: '.NET Framework 4.7.2',
+        },
+      ],
+    },
+    {
+      id: 2,
+      detail:
+        '2,What do you need to install in order to use EF Core CLI commands?',
+      countDown: 30,
+      answers: [
+        {
+          id: 1,
+          detail: '.NET SDK appropriate for your OS',
+        },
+        {
+          id: 2,
+          detail: 'Visual Studio Code for your OS',
+        },
+        {
+          id: 3,
+          detail: 'Visual Studio 2017 15.3 or higher on Windows only',
+        },
+        {
+          id: 4,
+          detail: '.NET Framework 4.7.2',
+        },
+      ],
+    },
+    {
+      id: 3,
+      detail:
+        '3.What do you need to install in order to use EF Core CLI commands?',
+      countDown: 30,
+      answers: [
+        {
+          id: 1,
+          detail: '.NET SDK appropriate for your OS',
+        },
+        {
+          id: 2,
+          detail: 'Visual Studio Code for your OS',
+        },
+        {
+          id: 3,
+          detail: 'Visual Studio 2017 15.3 or higher on Windows only',
+        },
+        {
+          id: 4,
+          detail: '.NET Framework 4.7.2',
+        },
+      ],
+    },
+    {
+      id: 4,
+      detail:
+        '4.What do you need to install in order to use EF Core CLI commands?',
+      countDown: 30,
+      answers: [
+        {
+          id: 1,
+          detail: '.NET SDK appropriate for your OS',
+        },
+        {
+          id: 2,
+          detail: 'Visual Studio Code for your OS',
+        },
+        {
+          id: 3,
+          detail: 'Visual Studio 2017 15.3 or higher on Windows only',
+        },
+        {
+          id: 4,
+          detail: '.NET Framework 4.7.2',
+        },
+      ],
+    },
+    {
+      id: 5,
+      detail:
+        'What do you need to install in order to use EF Core CLI commands?',
+      countDown: 30,
+      answers: [
+        {
+          id: 1,
+          detail: '.NET SDK appropriate for your OS',
+        },
+        {
+          id: 2,
+          detail: 'Visual Studio Code for your OS',
+        },
+        {
+          id: 3,
+          detail: 'Visual Studio 2017 15.3 or higher on Windows only',
+        },
+        {
+          id: 4,
+          detail: '.NET Framework 4.7.2',
+        },
+      ],
+    },
+    {
+      id: 6,
+      detail:
+        '6.What do you need to install in order to use EF Core CLI commands?',
+      countDown: 30,
+      answers: [
+        {
+          id: 1,
+          detail: '.NET SDK appropriate for your OS',
+        },
+        {
+          id: 2,
+          detail: 'Visual Studio Code for your OS',
+        },
+        {
+          id: 3,
+          detail: 'Visual Studio 2017 15.3 or higher on Windows only',
+        },
+        {
+          id: 4,
+          detail: '.NET Framework 4.7.2',
+        },
+      ],
+    },
+  ],
+  numberOfQuestion: 6,
 };
 
 function Transition(props) {
@@ -43,6 +197,12 @@ function Transition(props) {
 }
 
 class TakeATest extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      exercise: mockExercises,
+    };
+  }
   render() {
     const { classes, exercise = {} } = this.props;
     return (
@@ -72,7 +232,7 @@ class TakeATest extends React.Component {
                 alignItems="center"
               >
                 <GridItem xs={12} sm={12} md={8}>
-                  <Question />
+                  <Question exercise={this.state.exercise} />
                 </GridItem>
               </GridContainer>
             </DialogContent>

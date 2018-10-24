@@ -16,7 +16,7 @@ class CountDownSeconds extends React.PureComponent {
   render() {
     return (
       <Countdown
-        controlled={false}
+        controlled={this.props.controlled}
         date={Date.now() + this.props.seconds * 1000 || 0}
         renderer={this.renderer}
         onComplete={this.props.onComplete}
@@ -29,6 +29,7 @@ class CountDownSeconds extends React.PureComponent {
 CountDownSeconds.propTypes = {
   seconds: PropTypes.number.isRequired,
   onComplete: PropTypes.func,
+  controlled: PropTypes.bool,
 };
 
 export default CountDownSeconds;
