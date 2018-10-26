@@ -118,11 +118,10 @@ class Question extends React.Component {
 
   handlePickAnswer = (e, ansewrId) => {
     this.stopCountDown();
+    this.enabelButtonNextQuestion();
   };
 
-  handleTimeUp = () => {
-    this.setState({ showNextQuestion: true });
-  };
+  handleTimeUp = () => {};
 
   hanldePickAnswer = answerId => {};
 
@@ -134,9 +133,25 @@ class Question extends React.Component {
     this.setState({ stopCountDown: true });
   };
 
+  enabelButtonNextQuestion = () => {
+    this.setState({ showNextQuestion: true });
+  };
+
   getCurrentQuestion = () => {
     const { questions = [] } = this.state.exercise;
     return questions[this.state.currentQuestionIndex];
+  };
+
+  handleNextQuestion = () => {
+    debugger;
+    console.log(this);
+    if (
+      this.state.currentQuestionIndex < this.state.exercise.questions.lenght
+    ) {
+      this.setState({
+        currentQuestionIndex: this.state.currentQuestionIndex + 1,
+      });
+    }
   };
 
   render() {
@@ -195,6 +210,7 @@ class Question extends React.Component {
             color="secondary"
             className={classes.buttonNextQuestion}
             disabled={!this.state.showNextQuestion}
+            onClick={this.handleNextQuestion}
           >
             <FormattedMessage {...messages.nextQuestion} />
           </Button>
