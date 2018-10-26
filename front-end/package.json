@@ -12,6 +12,7 @@
     "ajv": "5.0.0",
     "chartist": "0.10.1",
     "classnames": "2.2.6",
+    "draft-js": "^0.10.5",
     "history": "^4.7.2",
     "immutable": "3.8.2",
     "npm-run-all": "4.1.3",

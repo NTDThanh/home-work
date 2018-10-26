@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -13,6 +14,7 @@ import Button from '@material-ui/core/Button';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import CountDownClock from '../CountDown/CountDownClock';
+import RichEditor from '../RichEditor/index';
 
 const styles = theme => ({
   questionContains: {
@@ -216,6 +218,8 @@ class Question extends React.Component {
           </Button>
           <div style={{ clear: 'both' }} />
         </div>
+        <div id="richEdit" />
+        {ReactDOM.render(<RichEditor />, document.getElementById('richEdit'))}
       </Paper>
     );
   }
