@@ -19,6 +19,10 @@ export default defineMessages({
     id: 'app.components.TakeATest.nextQuestion',
     defaultMessage: 'Next Question',
   },
+  finish: {
+    id: 'app.components.TakeATest.finish',
+    defaultMessage: 'Finish',
+  },
   approximatelyQuestion: {
     id: 'app.components.TakeATest.approximatelyQuestion',
     defaultMessage: 'Approximately {countQuestion} questions remaining',

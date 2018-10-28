@@ -1,19 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItem from '@material-ui/core/ListItem';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import GridContainer from 'components/Grid/GridContainer.jsx';
@@ -46,145 +38,93 @@ const mockExercises = {
   questions: [
     {
       id: 1,
+      questionCode: 'abc123!',
+      answerCode: 'U2FsdGVkX1/PX2x2zBKhWoD4IohIUnIihW0XmYv+Kjc=',
+      choosedAnswer: '',
       detail:
         '1.What do you need to install in order to use EF Core CLI commands?',
-      countDown: 30,
+      countDown: 5,
       answers: [
         {
           id: 1,
-          detail: '.NET SDK appropriate for your OS',
+          detail: '.1NET SDK appropriate for your OS',
+          answerCode: 'fhgstti',
         },
         {
           id: 2,
-          detail: 'Visual Studio Code for your OS',
+          detail: '1Visual Studio Code for your OS',
+          answerCode: 'fhgstta',
         },
         {
           id: 3,
-          detail: 'Visual Studio 2017 15.3 or higher on Windows only',
+          detail: '1Visual Studio 2017 15.3 or higher on Windows only',
+          answerCode: 'fhgsttb',
         },
         {
           id: 4,
-          detail: '.NET Framework 4.7.2',
+          detail: '1.NET Framework 4.7.2',
+          answerCode: 'fhgsttc',
         },
       ],
     },
     {
       id: 2,
+      questionCode: 'abc123!',
+      answerCode: 'U2FsdGVkX1/PX2x2zBKhWoD4IohIUnIihW0XmYv+Kjc=',
       detail:
-        '2,What do you need to install in order to use EF Core CLI commands?',
-      countDown: 30,
+        '2.What do you need to install in order to use EF Core CLI commands?',
+      countDown: 3,
       answers: [
         {
           id: 1,
-          detail: '.NET SDK appropriate for your OS',
+          detail: '3.NET SDK appropriate for your OS',
+          answerCode: 'fhgsttis',
         },
         {
           id: 2,
-          detail: 'Visual Studio Code for your OS',
+          detail: '2Visual Studio Code for your OS',
+          answerCode: 'fhgstti',
         },
         {
           id: 3,
-          detail: 'Visual Studio 2017 15.3 or higher on Windows only',
+          detail: '3Visual Studio 2017 15.3 or higher on Windows only',
+          answerCode: 'fhgsttb',
         },
         {
           id: 4,
-          detail: '.NET Framework 4.7.2',
+          detail: '4.NET Framework 4.7.2',
+          answerCode: 'fhgsttc',
         },
       ],
     },
     {
       id: 3,
+      questionCode: 'abc123!',
+      answerCode: 'U2FsdGVkX1/PX2x2zBKhWoD4IohIUnIihW0XmYv+Kjc=',
+      choosedAnswer: '',
       detail:
         '3.What do you need to install in order to use EF Core CLI commands?',
-      countDown: 30,
+      countDown: 5,
       answers: [
         {
           id: 1,
           detail: '.NET SDK appropriate for your OS',
+          answerCode: 'fhgstti',
         },
         {
           id: 2,
           detail: 'Visual Studio Code for your OS',
+          answerCode: 'fhgstta',
         },
         {
           id: 3,
           detail: 'Visual Studio 2017 15.3 or higher on Windows only',
+          answerCode: 'fhgsttb',
         },
         {
           id: 4,
           detail: '.NET Framework 4.7.2',
-        },
-      ],
-    },
-    {
-      id: 4,
-      detail:
-        '4.What do you need to install in order to use EF Core CLI commands?',
-      countDown: 30,
-      answers: [
-        {
-          id: 1,
-          detail: '.NET SDK appropriate for your OS',
-        },
-        {
-          id: 2,
-          detail: 'Visual Studio Code for your OS',
-        },
-        {
-          id: 3,
-          detail: 'Visual Studio 2017 15.3 or higher on Windows only',
-        },
-        {
-          id: 4,
-          detail: '.NET Framework 4.7.2',
-        },
-      ],
-    },
-    {
-      id: 5,
-      detail:
-        'What do you need to install in order to use EF Core CLI commands?',
-      countDown: 30,
-      answers: [
-        {
-          id: 1,
-          detail: '.NET SDK appropriate for your OS',
-        },
-        {
-          id: 2,
-          detail: 'Visual Studio Code for your OS',
-        },
-        {
-          id: 3,
-          detail: 'Visual Studio 2017 15.3 or higher on Windows only',
-        },
-        {
-          id: 4,
-          detail: '.NET Framework 4.7.2',
-        },
-      ],
-    },
-    {
-      id: 6,
-      detail:
-        '6.What do you need to install in order to use EF Core CLI commands?',
-      countDown: 30,
-      answers: [
-        {
-          id: 1,
-          detail: '.NET SDK appropriate for your OS',
-        },
-        {
-          id: 2,
-          detail: 'Visual Studio Code for your OS',
-        },
-        {
-          id: 3,
-          detail: 'Visual Studio 2017 15.3 or higher on Windows only',
-        },
-        {
-          id: 4,
-          detail: '.NET Framework 4.7.2',
+          answerCode: 'fhgsttc',
         },
       ],
     },
@@ -203,6 +143,7 @@ class TakeATest extends React.Component {
       exercise: mockExercises,
     };
   }
+
   render() {
     const { classes, exercise = {} } = this.props;
     return (
@@ -253,3 +194,10 @@ TakeATest.propTypes = {
 };
 
 export default withStyles(styles)(TakeATest);
+
+// Encryption -
+
+//Encryption - lúc đăng ký
+// 1. Mỗi answer, question sẽ có một key - render bằng shortid
+// 2. Đáp án đúng được mã hóa lưu trong quuestion.alignItems
+// 3. Công thức của đáp án đúng là encryption từ key của câu hỏi với câu trả lời.
