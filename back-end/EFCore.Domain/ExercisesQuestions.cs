@@ -6,10 +6,10 @@ namespace EFCore.Domain
 {
     public class ExercisesQuestions
     {
-        public int ExercisesId { get; set; }
+        public Guid ExercisesId { get; set; }
         public Exercises Exercises { get; set; }
 
-        public int QuestionsId { get; set; }
+        public Guid QuestionsId { get; set; }
         public Questions Questions { get; set; }
 
     }

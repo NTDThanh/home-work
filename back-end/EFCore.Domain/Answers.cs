@@ -6,24 +6,22 @@ using System.Text;
 
 namespace EFCore.Domain
 {
-    public class Answers
+    public class Answers : EntitiesBase
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Detail { get; set; }
         public string Note { get; set; }
-        public bool IsCorrect { get; set; }
         public virtual Questions Questions { get; set; }
 
         //Colum common
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public int CreateBy { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime? CreateAt { get; set; }
-        public DateTime? UpdateAt { get; set; }
-        public int UpdateBy { get; set; }
-        public DateTime? LastUpdate { get; set; }
-        public bool IsDelete { get; set; }
+        //public Guid CreateBy { get; set; }
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        //public DateTime? CreateAt { get; set; }
+        //public DateTime? UpdateAt { get; set; }
+        //public Guid UpdateBy { get; set; }
+        //public DateTime? LastUpdate { get; set; }
+        //public bool IsDelete { get; set; }
     }
 }

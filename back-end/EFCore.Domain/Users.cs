@@ -6,11 +6,11 @@ using System.Text;
 
 namespace EFCore.Domain
 {
-    public class Users
+    public class Users : EntitiesBase
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string FullName { get; set; }
         public string Mail { get; set; }
         public string Password { get; set; }
@@ -22,14 +22,14 @@ namespace EFCore.Domain
         public virtual List<Skills> Skills { get; set; }
         public virtual UserGroup UserGroup { get; set; }
 
-        //Colum common
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public int CreateBy { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime? CreateAt { get; set; }
-        public DateTime? UpdateAt { get; set; }
-        public int UpdateBy { get; set; }
-        public DateTime? LastUpdate { get; set; }
-        public bool IsDelete { get; set; }
+        ////Colum common
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        //public int CreateBy { get; set; }
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        //public DateTime? CreateAt { get; set; }
+        //public DateTime? UpdateAt { get; set; }
+        //public int UpdateBy { get; set; }
+        //public DateTime? LastUpdate { get; set; }
+        //public bool IsDelete { get; set; }
     }
 }

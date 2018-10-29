@@ -6,15 +6,9 @@ using Microsoft.Extensions.Logging.Console;
 
 namespace EFCore.Data
 {
-    public class AddressContext : DbContext
+    public class HomeWorkContext : DbContext
     {
-        public static readonly LoggerFactory MyConsoleLoggerFactory
-          = new LoggerFactory(new[] {
-              new ConsoleLoggerProvider((category, level)
-                => category == DbLoggerCategory.Database.Command.Name
-               && level == LogLevel.Information, true) });
-
-        // LamVu Code
+        public HomeWorkContext(DbContextOptions<HomeWorkContext> options) : base(options) { }
         public DbSet<Comments> Comments { get; set; }
         public DbSet<Answers> Answers { get; set; }
         public DbSet<Courses> Courses { get; set; }
@@ -28,15 +22,10 @@ namespace EFCore.Data
         public DbSet<Users> Users { get; set; }
         public DbSet<ExercisesQuestions> ExercisesQuestions { get; set; }
 
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseLoggerFactory(MyConsoleLoggerFactory)
-                .EnableSensitiveDataLogging(true)
-                .UseSqlServer(@"data source = DESKTOP-A9IR48I\SQLEXPRESS;initial catalog = dbtest;persist security info=True; 
-   Integrated Security=SSPI;");
-            //.UseSqlServer(@"Data Source=192.168.6.235\SQLEXPRESS;Initial Catalog=EFCore; Persist Security Info=True;User ID=efcoreadmin;Password=efcorepass");
+                .UseSqlServer(@"Data Source=103.28.37.225;Initial Catalog=EFCore; Persist Security Info=True;User ID=VNETTEST;Password=abc123!");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -4,14 +4,16 @@ using EFCore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.Data.Migrations
 {
     [DbContext(typeof(HomeWorkContext))]
-    partial class AddressContextModelSnapshot : ModelSnapshot
+    [Migration("20181029160623_first")]
+    partial class first
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,7 +29,7 @@ namespace EFCore.Data.Migrations
                     b.Property<DateTime?>("CreateAt")
                         .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<Guid?>("CreateBy")
+                    b.Property<Guid>("CreateBy")
                         .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("Detail");
@@ -63,7 +65,7 @@ namespace EFCore.Data.Migrations
                     b.Property<DateTime?>("CreateAt")
                         .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<Guid?>("CreateBy")
+                    b.Property<Guid>("CreateBy")
                         .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("Detail");
@@ -105,7 +107,7 @@ namespace EFCore.Data.Migrations
                     b.Property<DateTime?>("CreateAt")
                         .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<Guid?>("CreateBy")
+                    b.Property<Guid>("CreateBy")
                         .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("Description");
@@ -139,7 +141,7 @@ namespace EFCore.Data.Migrations
                     b.Property<DateTime?>("CreateAt")
                         .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<Guid?>("CreateBy")
+                    b.Property<Guid>("CreateBy")
                         .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<Guid?>("ExercisesId");
@@ -189,7 +191,7 @@ namespace EFCore.Data.Migrations
                     b.Property<DateTime?>("CreateAt")
                         .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<Guid?>("CreateBy")
+                    b.Property<Guid>("CreateBy")
                         .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("Image");
@@ -244,7 +246,7 @@ namespace EFCore.Data.Migrations
                     b.Property<DateTime?>("CreateAt")
                         .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<Guid?>("CreateBy")
+                    b.Property<Guid>("CreateBy")
                         .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("Description");
@@ -284,7 +286,7 @@ namespace EFCore.Data.Migrations
                     b.Property<DateTime?>("CreateAt")
                         .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<Guid?>("CreateBy")
+                    b.Property<Guid>("CreateBy")
                         .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("Description");
@@ -322,7 +324,7 @@ namespace EFCore.Data.Migrations
                     b.Property<DateTime?>("CreateAt")
                         .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<Guid?>("CreateBy")
+                    b.Property<Guid>("CreateBy")
                         .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("Description");
@@ -360,7 +362,7 @@ namespace EFCore.Data.Migrations
                     b.Property<DateTime?>("CreateAt")
                         .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<Guid?>("CreateBy")
+                    b.Property<Guid>("CreateBy")
                         .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("DefaultRedirect");
@@ -398,7 +400,7 @@ namespace EFCore.Data.Migrations
                     b.Property<DateTime?>("CreateAt")
                         .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<Guid?>("CreateBy")
+                    b.Property<Guid>("CreateBy")
                         .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("Device");
@@ -438,7 +440,7 @@ namespace EFCore.Data.Migrations
                     b.Property<DateTime?>("CreateAt")
                         .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<Guid?>("CreateBy")
+                    b.Property<Guid>("CreateBy")
                         .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("Description");
