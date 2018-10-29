@@ -22,7 +22,7 @@ import messages from './messages';
 
 import GridItem from 'components/Grid/GridItem.jsx';
 import GridContainer from 'components/Grid/GridContainer.jsx';
-import CustomInput from 'components/CustomInput/CustomInput.jsx';
+import TextField from '@material-ui/core/TextField';
 import CardBody from 'components/Card/CardBody.jsx';
 import Card from 'components/Card/Card.jsx';
 import CardHeader from 'components/Card/CardHeader.jsx';
@@ -31,8 +31,10 @@ import Button from 'components/CustomButtons/Button.jsx';
 import CardAvatar from 'components/Card/CardAvatar.jsx';
 import avatar from 'assets/img/faces/marc.jpg';
 import CardFooter from 'components/Card/CardFooter.jsx';
-
-const styles = {
+import SendIcon from '@material-ui/icons/Send';
+import classNames from 'classnames';
+import MenuItem from '@material-ui/core/MenuItem';
+const styles = theme => ({
   cardCategoryWhite: {
     color: 'rgba(255,255,255,.62)',
     margin: '0',
@@ -49,14 +51,57 @@ const styles = {
     marginBottom: '3px',
     textDecoration: 'none',
   },
-  bootonCreate: {
+  buttonGroup: {
     position: 'absolute',
-    right: 10,
+    textAlign: 'center',
     bottom: 10,
+    right: 10,
   },
-};
+  button: {
+    marginRight: 10,
+    maxHeight: 40,
+  },
+  marginSpan: {
+    textAlign: 'center',
+  },
+
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 300,
+  },
+  dense: {
+    marginTop: 19,
+  },
+  menu: {
+    width: 200,
+  },
+});
+
+const levelList = [
+  {
+    value: '1',
+    label: 'Level1',
+  },
+  {
+    value: '2',
+    label: 'Level2',
+  },
+  {
+    value: '4',
+    label: 'Level4',
+  },
+  {
+    value: '5',
+    label: 'Level5',
+  },
+];
 /* eslint-disable react/prefer-stateless-function */
 export class ExerciseCreatePage extends React.PureComponent {
+  handleBack = () => {
+    this.props.history.push('/excercise/list');
+  };
+
   render() {
     const { classes } = this.props;
     return (
@@ -72,52 +117,88 @@ export class ExerciseCreatePage extends React.PureComponent {
               <CardHeader color="primary">
                 <h4 className={classes.cardTitleWhite}>Exercise</h4>
                 <p className={classes.cardCategoryWhite}>Create</p>
+                <div className={classes.buttonGroup}>
+                  <Button
+                    color="teal"
+                    className={classes.button}
+                    onClick={this.handleBack}
+                  >
+                    <i class="material-icons ">backspace</i>
+                    <span className={classes.marginSpan}>Cancel</span>
+                  </Button>
+                  <Button color="teal" className={classes.button}>
+                    <i class="material-icons ">send</i>
+                    <span className={classes.marginSpan}>Create</span>
+                  </Button>
+                </div>
               </CardHeader>
               <CardBody>
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={5}>
-                    <CustomInput
-                      labelText="Name"
+                    <TextField
+                      label="Name"
                       id="name"
-                      formControlProps={{
-                        fullWidth: true,
-                      }}
+                      className={classNames(classes.textField, classes.dense)}
+                      margin="normal"
+                      fullWidth
+                      style={{ margin: 8 }}
                     />
                   </GridItem>
                   <GridItem xs={12} sm={12} md={5}>
-                    <CustomInput
-                      labelText="Country"
-                      id="country"
-                      formControlProps={{
-                        fullWidth: true,
-                      }}
+                    <TextField
+                      id="image"
+                      label="Image"
+                      className={classNames(classes.textField, classes.dense)}
+                      margin="normal"
+                      fullWidth
                     />
                   </GridItem>
                 </GridContainer>
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={5}>
-                    <CustomInput
-                      labelText="City"
-                      id="city"
-                      formControlProps={{
-                        fullWidth: true,
-                      }}
+                    <TextField
+                      id="questions"
+                      label="Questions"
+                      className={classNames(classes.textField, classes.dense)}
+                      margin="normal"
+                      fullWidth
                     />
                   </GridItem>
                   <GridItem xs={12} sm={12} md={5}>
-                    <CustomInput
-                      labelText="Salary"
-                      id="salary"
-                      formControlProps={{
-                        fullWidth: true,
-                      }}
+                    <TextField
+                      id="skills"
+                      label="Skills"
+                      className={classNames(classes.textField, classes.dense)}
+                      margin="normal"
                     />
                   </GridItem>
+                  <TextField
+                    id="level"
+                    label="Level"
+                    select
+                    className={classes.textField}
+                    margin="normal"
+                    fullWidth
+                    SelectProps={{
+                      native: true,
+                      MenuProps: {
+                        className: classes.menu,
+                      },
+                    }}
+                  >
+                    {levelList.map(option => (
+                      <option key={option.z} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </TextField>
                 </GridContainer>
               </CardBody>
               <CardFooter>
-                <Button color="primary">Create</Button>
-                <Button color="primary">Cancel</Button>
+                <Button color="primary">
+                  <SendIcon />
+                  Create
+                </Button>
               </CardFooter>
             </Card>
           </GridItem>
