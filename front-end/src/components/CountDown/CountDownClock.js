@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import CountDownSeconds from './index';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import ManualCountDown from '../CountDown/ManualCountDown';
 
 const styles = {
   clockWrapper: {
@@ -50,9 +51,8 @@ class CountDownClock extends React.PureComponent {
   }
 
   handleOnTick = time => {
-    debugger;
     if (!this.props.stop && this.state.seconds !== 0) {
-      const seconds = time.total / 1000;
+      const seconds = time;
       const timeSpan = 100 - (seconds / this.state.seconds) * 100;
       this.setState({ complete: 100 - timeSpan, timeRemaining: seconds });
     }
@@ -83,6 +83,7 @@ class CountDownClock extends React.PureComponent {
     }
   };
   render() {
+    console.log(this.props);
     const { classes } = this.props;
     return (
       <div className={classes.clockWrapper}>
@@ -100,11 +101,19 @@ class CountDownClock extends React.PureComponent {
           className={classes.secondsCountDown}
           style={{ display: this.props.stop ? 'none' : 'block' }}
         >
-          <CountDownSeconds
+          {/* <CountDownSeconds
             controlled={this.props.stop}
             seconds={this.props.seconds}
             onComplete={this.handleTimeUp}
             onTick={this.handleOnTick}
+          /> */}
+          <ManualCountDown
+            seconds={this.props.seconds}
+            handleCompelete={this.handleTimeUp}
+            perSeconds={this.handleOnTick}
+            stop={this.props.stop}
+            handleStop={this.handleStopCountDown}
+            reload={this.props.reload}
           />
         </p>
         <p

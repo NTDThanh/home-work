@@ -14,9 +14,14 @@ class CountDownSeconds extends React.PureComponent {
     return time.total / 1000;
   };
   render() {
+    console.log(
+      'CountDownSeconds',
+      Date.now() + this.props.seconds * 1000,
+      this.props.controlled,
+    );
     return (
       <Countdown
-        controlled={this.props.controlled}
+        // controlled={this.props.controlled}
         date={Date.now() + this.props.seconds * 1000 || 0}
         renderer={this.renderer}
         onComplete={this.props.onComplete}

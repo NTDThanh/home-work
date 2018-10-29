@@ -10,123 +10,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import CountDownClock from '../CountDown/CountDownClock';
-import { encryptionToString, decryption } from '../../utils/security';
 import _ from 'lodash';
 import Check from '@material-ui/icons/Check';
 import Close from '@material-ui/icons/Close';
 import Zoom from '@material-ui/core/Zoom';
-
-const styles = theme => ({
-  questionContains: {
-    position: 'relative',
-    paddingLeft: 0,
-    paddingRight: 0,
-    color: '#181818',
-    'border-top-left-radius': 5,
-    'border-top-right-radius': 5,
-  },
-  questionText: {
-    float: 'left',
-    fontSize: '24px',
-    fontWeight: 300,
-    margin: 0,
-    color: '#181818',
-    lineHeight: '32px',
-    padding: '40px 40px 5px 40px',
-    backgroundColor: 'white',
-  },
-  questionTitle: {
-    float: 'left',
-    width: '100%',
-    backgroundColor: '#f2f2f2',
-    color: '#aaaaaa',
-    height: '50px',
-    'border-top-left-radius': 5,
-    'border-top-right-radius': 5,
-  },
-  questionTitleTextLeft: {
-    float: 'left',
-    fontSize: '12px',
-    marginLeft: '10px',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    width: '350px',
-  },
-  questionTitleTextRight: {
-    float: 'right',
-    fontSize: '12px',
-    marginRight: '10px',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    width: '350px',
-    textAlign: 'right',
-  },
-  questionTitleProgressBar: {
-    clear: 'both',
-  },
-  answerList: {
-    float: 'left',
-    padding: '30px 40px',
-    width: '100%',
-    boxSizing: 'border-box',
-  },
-  answerItem: {
-    border: '2px solid #e3e3e2',
-    borderRadius: '5px',
-    width: '100%',
-    marginBottom: '5px',
-    cursor: 'pointer',
-    'min-height': '64px',
-  },
-  answerItemTrue: {
-    // ...this.answerItem,
-    border: '2px solid #86CE21',
-    borderRadius: '5px',
-    width: '100%',
-    marginBottom: '5px',
-    cursor: 'pointer',
-    '& svg': {
-      color: '#86CE21',
-    },
-  },
-  answerItemFail: {
-    // ...this.answerItem,
-    border: '2px solid #ea3939',
-    borderRadius: '5px',
-    width: '100%',
-    marginBottom: '5px',
-    cursor: 'pointer',
-    '& svg': {
-      color: '#ea3939',
-    },
-  },
-  answerItemText: {
-    fontSize: '18px',
-    fontWeight: 200,
-    color: 'inherit',
-    '& span': {
-      color: 'inherit',
-    },
-  },
-  questionFooter: {
-    width: '100%',
-    padding: ' 20px 40px 30px 40px',
-    borderRadius: '0 0 5px 5px',
-    boxSizing: 'border-box',
-  },
-  buttonNextQuestion: {
-    float: 'right',
-    textTransform: 'none',
-  },
-  answerIconResult: {
-    float: 'right',
-    'margin-right': '-20px',
-    'margin-top': '5px',
-  },
-});
+import CountDownClock from '../CountDown/CountDownClock';
+import { encryptionToString, decryption } from '../../utils/security';
+import questionStyles from '../../assets/jss/material-dashboard-react/components/questionStyle';
 
 class Question extends React.Component {
   constructor(props) {
@@ -148,6 +38,7 @@ class Question extends React.Component {
       correctAnswerCode: '',
       inCorrectAnswerCode: '', // Sẽ có giá trị trong trường hợp chọn sai
       isChecked: false,
+      reload: false,
     };
   }
 
@@ -219,6 +110,7 @@ class Question extends React.Component {
     this.addAnswerToResult({}, this.state.currentQuestion, false, 0);
     this.stopCountDown(); // Need to fill time result
     this.enabelButtonNextQuestion();
+    this.setState({ reload: true });
   };
 
   handleStopCountDown = timeRemaining => {
@@ -241,7 +133,7 @@ class Question extends React.Component {
   };
 
   enabelButtonNextQuestion = () => {
-    this.setState({ showNextQuestion: true });
+    this.setState({ showNextQuestion: true, stopCountDown: true });
   };
 
   getCurrentQuestion = () => {
@@ -265,7 +157,7 @@ class Question extends React.Component {
           currentQuestionIndex: this.state.currentQuestionIndex + 1,
         },
         () => {
-          this.startCountDown();
+          // this.setState({ reload: true });
         },
       );
     } else if (this.state.currentQuestionIndex === numOfQuestion - 1) {
@@ -279,7 +171,8 @@ class Question extends React.Component {
       correctAnswerCode: '',
       isChecked: false,
       timeRemaining: 0,
-      stopCountDown: false,
+      stopCountDown: true,
+      reload: true,
     });
   };
 
@@ -295,9 +188,7 @@ class Question extends React.Component {
       questionId: currentQuestion.id,
       result: result,
     };
-    this.setState({ testResult: [...this.state.testResult, resultInfo] }, () =>
-      console.log(this.state.testResult),
-    );
+    this.setState({ testResult: [...this.state.testResult, resultInfo] });
   };
 
   handleFinish = () => {
@@ -349,6 +240,7 @@ class Question extends React.Component {
           onComplete={this.handleTimeUp}
           stop={this.state.stopCountDown}
           handleStop={this.handleStopCountDown}
+          reload={this.state.reload}
         />
         <div className={classes.questionTitle}>
           <p className={classes.questionTitleTextLeft}>
@@ -441,4 +333,4 @@ class Question extends React.Component {
   }
 }
 
-export default withStyles(styles)(Question);
+export default withStyles(questionStyles)(Question);
