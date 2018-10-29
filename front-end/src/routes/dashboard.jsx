@@ -1,105 +1,113 @@
 // @material-ui/icons
-import Dashboard from "@material-ui/icons/Dashboard";
-import Person from "@material-ui/icons/Person";
+import Dashboard from '@material-ui/icons/Dashboard';
+import Person from '@material-ui/icons/Person';
 // import ContentPaste from "@material-ui/icons/ContentPaste";
-import LibraryBooks from "@material-ui/icons/LibraryBooks";
-import BubbleChart from "@material-ui/icons/BubbleChart";
-import LocationOn from "@material-ui/icons/LocationOn";
-import Notifications from "@material-ui/icons/Notifications";
-import Unarchive from "@material-ui/icons/Unarchive";
+import LibraryBooks from '@material-ui/icons/LibraryBooks';
+import BubbleChart from '@material-ui/icons/BubbleChart';
+import LocationOn from '@material-ui/icons/LocationOn';
+import Notifications from '@material-ui/icons/Notifications';
+import Unarchive from '@material-ui/icons/Unarchive';
 
 // core components/views
-import DashboardPage from "views/Dashboard/Dashboard.jsx";
-import UserProfile from "views/UserProfile/UserProfile.jsx";
-import TableList from "views/TableList/TableList.jsx";
-import Typography from "views/Typography/Typography.jsx";
-import Icons from "views/Icons/Icons.jsx";
-import Maps from "views/Maps/Maps.jsx";
-import NotificationsPage from "views/Notifications/Notifications.jsx";
-import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
-import ExerciseListPage from "containers/ExercisePage/ExerciseListPage/Loadable";
-import UserLoginPage from "containers/UserPage/UserLoginPage/Loadable";
-import UserCreateEditPage from "containers/UserPage/UserCreateEditPage/Loadable";
+import DashboardPage from 'views/Dashboard/Dashboard.jsx';
+import UserProfile from 'views/UserProfile/UserProfile.jsx';
+import TableList from 'views/TableList/TableList.jsx';
+import Typography from 'views/Typography/Typography.jsx';
+import Icons from 'views/Icons/Icons.jsx';
+import Maps from 'views/Maps/Maps.jsx';
+import NotificationsPage from 'views/Notifications/Notifications.jsx';
+import UpgradeToPro from 'views/UpgradeToPro/UpgradeToPro.jsx';
+import ExerciseListPage from 'containers/ExercisePage/ExerciseListPage/Loadable';
+import UserLoginPage from 'containers/UserPage/UserLoginPage/Loadable';
+import UserCreateEditPage from 'containers/UserPage/UserCreateEditPage/Loadable';
+import ExerciseCreatePage from 'containers/ExercisePage/ExerciseCreatePage/Loadable';
 
 const dashboardRoutes = [
   {
-    path: "/dashboard",
-    sidebarName: "Dashboard",
-    navbarName: "Material Dashboard",
+    path: '/dashboard',
+    sidebarName: 'Dashboard',
+    navbarName: 'Material Dashboard',
     icon: Dashboard,
-    component: DashboardPage
+    component: DashboardPage,
   },
   {
-    path: "/excercise",
-    sidebarName: "excercise",
-    navbarName: "Excercise List",
+    path: '/excercise/list',
+    sidebarName: 'excercise',
+    navbarName: 'Excercise List',
     icon: Dashboard,
-    component: ExerciseListPage
+    component: ExerciseListPage,
   },
   {
-    path: "/login",
-    sidebarName: "Login Page",
-    navbarName: "Login",
+    path: '/login',
+    sidebarName: 'Login Page',
+    navbarName: 'Login',
     icon: Dashboard,
-    component: UserLoginPage
+    component: UserLoginPage,
   },
   {
-    path: "/register",
-    sidebarName: "Register Page",
-    navbarName: "Register",
+    path: '/register',
+    sidebarName: 'Register Page',
+    navbarName: 'Register',
     icon: Dashboard,
-    component: UserCreateEditPage
+    component: UserCreateEditPage,
   },
   {
-    path: "/user",
-    sidebarName: "User Profile",
-    navbarName: "Profile",
+    path: '/user',
+    sidebarName: 'User Profile',
+    navbarName: 'Profile',
     icon: Person,
-    component: UserProfile
+    component: UserProfile,
   },
   {
-    path: "/table",
-    sidebarName: "Table List",
-    navbarName: "Table List",
-    icon: "content_paste",
-    component: TableList
+    path: '/table',
+    sidebarName: 'Table List',
+    navbarName: 'Table List',
+    icon: 'content_paste',
+    component: TableList,
   },
   {
-    path: "/typography",
-    sidebarName: "Typography",
-    navbarName: "Typography",
+    path: '/typography',
+    sidebarName: 'Typography',
+    navbarName: 'Typography',
     icon: LibraryBooks,
-    component: Typography
+    component: Typography,
   },
   {
-    path: "/icons",
-    sidebarName: "Icons",
-    navbarName: "Icons",
+    path: '/icons',
+    sidebarName: 'Icons',
+    navbarName: 'Icons',
     icon: BubbleChart,
-    component: Icons
+    component: Icons,
   },
   {
-    path: "/maps",
-    sidebarName: "Maps",
-    navbarName: "Map",
+    path: '/maps',
+    sidebarName: 'Maps',
+    navbarName: 'Map',
     icon: LocationOn,
-    component: Maps
+    component: Maps,
   },
   {
-    path: "/notifications",
-    sidebarName: "Notifications",
-    navbarName: "Notifications",
+    path: '/notifications',
+    sidebarName: 'Notifications',
+    navbarName: 'Notifications',
     icon: Notifications,
-    component: NotificationsPage
+    component: NotificationsPage,
   },
   {
-    path: "/upgrade-to-pro",
-    sidebarName: "Upgrade To PRO",
-    navbarName: "Upgrade To PRO",
+    path: '/upgrade-to-pro',
+    sidebarName: 'Upgrade To PRO',
+    navbarName: 'Upgrade To PRO',
     icon: Unarchive,
-    component: UpgradeToPro
+    component: UpgradeToPro,
   },
-  { redirect: true, path: "/", to: "/dashboard", navbarName: "Redirect" }
+  {
+    path: '/excercise/create',
+    sidebarName: 'Excercise Create Page',
+    navbarName: 'Excercise Create Page',
+    icon: Unarchive,
+    component: ExerciseCreatePage,
+  },
+  { redirect: true, path: '/', to: '/dashboard', navbarName: 'Redirect' },
 ];
 
 export default dashboardRoutes;
