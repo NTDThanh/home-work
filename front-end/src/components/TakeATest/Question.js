@@ -201,14 +201,9 @@ class Question extends React.Component {
   };
 
   showCorrectAnswer = answerCode => {
-    this.setState(
-      {
-        correctAnswerCode: answerCode,
-      },
-      () => {
-        console.log(this.state);
-      },
-    );
+    this.setState({
+      correctAnswerCode: answerCode,
+    });
   };
 
   showWrongAnswer = answerCode => {
@@ -216,7 +211,7 @@ class Question extends React.Component {
       inCorrectAnswerCode: answerCode,
     });
   };
-  // [Todo] Not re-countdown when time time up
+  // [Todo] Not re-countdown when time up
   handleTimeUp = () => {
     this.blockAnswer();
     const answerCode = this.findCorrectAnswer(this.state.currentQuestion);

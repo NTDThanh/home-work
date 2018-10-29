@@ -50,6 +50,7 @@ class CountDownClock extends React.PureComponent {
   }
 
   handleOnTick = time => {
+    debugger;
     if (!this.props.stop && this.state.seconds !== 0) {
       const seconds = time.total / 1000;
       const timeSpan = 100 - (seconds / this.state.seconds) * 100;
@@ -58,8 +59,9 @@ class CountDownClock extends React.PureComponent {
   };
 
   handleTimeUp = () => {
-    this.setState({ complete: 0 });
-    this.props.onComplete();
+    this.setState({ complete: 0, seconds: 0, timeRemaining: 0 }, () =>
+      this.props.onComplete(),
+    );
   };
 
   componentDidUpdate(preProps) {
