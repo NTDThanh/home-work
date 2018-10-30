@@ -14,7 +14,8 @@ namespace EFCore.Domain
         public string Description { get; set; }
         public string Detail { get; set; }
         public int CountDown { get; set; }
-        public Guid CorrectAnswerCode { get; set; }
+        public string CorrectAnswerCode { get; set; }
+        public string QuestionCode { get; set; }
         public virtual List<Comments> Comments { get; set; }
         public virtual List<Answers> Answers { get; set; }
         public virtual Skills Skills { get; set; }

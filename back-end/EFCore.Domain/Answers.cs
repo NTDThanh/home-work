@@ -11,6 +11,7 @@ namespace EFCore.Domain
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
+        public string AnswerCode { get; set; }
         public string Detail { get; set; }
         public string Note { get; set; }
         public virtual Questions Questions { get; set; }
