@@ -4,27 +4,37 @@
  *
  */
 
-import React from "react";
-import PropTypes from "prop-types";
-import Countdown from "react-countdown-now";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Countdown from 'react-countdown-now';
 
 /* eslint-disable react/prefer-stateless-function */
-class CountDownClock extends React.PureComponent {
-  renderer = time => <span>{time.seconds}</span>;
+class CountDownSeconds extends React.PureComponent {
+  renderer = time => {
+    return time.total / 1000;
+  };
   render() {
+    console.log(
+      'CountDownSeconds',
+      Date.now() + this.props.seconds * 1000,
+      this.props.controlled,
+    );
     return (
       <Countdown
+        // controlled={this.props.controlled}
         date={Date.now() + this.props.seconds * 1000 || 0}
         renderer={this.renderer}
         onComplete={this.props.onComplete}
+        onTick={this.props.onTick}
       />
     );
   }
 }
 
-CountDownClock.propTypes = {
+CountDownSeconds.propTypes = {
   seconds: PropTypes.number.isRequired,
-  onComplete: PropTypes.func
+  onComplete: PropTypes.func,
+  controlled: PropTypes.bool,
 };
 
-export default CountDownClock;
+export default CountDownSeconds;

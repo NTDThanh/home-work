@@ -1,6 +1,6 @@
 /*
  *
- * ExerciseCreateEditPage actions
+ * ExerciseCreatePage actions
  *
  */
 

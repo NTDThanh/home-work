@@ -1,0 +1,112 @@
+const questionStyles = {
+  questionContains: {
+    position: 'relative',
+    paddingLeft: 0,
+    paddingRight: 0,
+    color: '#181818',
+    'border-top-left-radius': 5,
+    'border-top-right-radius': 5,
+  },
+  questionText: {
+    float: 'left',
+    fontSize: '24px',
+    fontWeight: 300,
+    margin: 0,
+    color: '#181818',
+    lineHeight: '32px',
+    padding: '40px 40px 5px 40px',
+    backgroundColor: 'white',
+  },
+  questionTitle: {
+    float: 'left',
+    width: '100%',
+    backgroundColor: '#f2f2f2',
+    color: '#aaaaaa',
+    height: '50px',
+    'border-top-left-radius': 5,
+    'border-top-right-radius': 5,
+  },
+  questionTitleTextLeft: {
+    float: 'left',
+    fontSize: '12px',
+    marginLeft: '10px',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    width: '350px',
+  },
+  questionTitleTextRight: {
+    float: 'right',
+    fontSize: '12px',
+    marginRight: '10px',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    width: '350px',
+    textAlign: 'right',
+  },
+  questionTitleProgressBar: {
+    clear: 'both',
+  },
+  answerList: {
+    float: 'left',
+    padding: '30px 40px',
+    width: '100%',
+    boxSizing: 'border-box',
+  },
+  answerItem: {
+    border: '2px solid #e3e3e2',
+    borderRadius: '5px',
+    width: '100%',
+    marginBottom: '5px',
+    cursor: 'pointer',
+    'min-height': '64px',
+  },
+  answerItemTrue: {
+    // ...this.answerItem,
+    border: '2px solid #86CE21',
+    borderRadius: '5px',
+    width: '100%',
+    marginBottom: '5px',
+    cursor: 'pointer',
+    '& svg': {
+      color: '#86CE21',
+    },
+  },
+  answerItemFail: {
+    // ...this.answerItem,
+    border: '2px solid #ea3939',
+    borderRadius: '5px',
+    width: '100%',
+    marginBottom: '5px',
+    cursor: 'pointer',
+    '& svg': {
+      color: '#ea3939',
+    },
+  },
+  answerItemText: {
+    fontSize: '18px',
+    fontWeight: 200,
+    color: 'inherit',
+    '& span': {
+      color: 'inherit',
+    },
+  },
+  questionFooter: {
+    width: '100%',
+    padding: ' 20px 40px 30px 40px',
+    borderRadius: '0 0 5px 5px',
+    boxSizing: 'border-box',
+  },
+  buttonNextQuestion: {
+    float: 'right',
+    textTransform: 'none',
+  },
+  answerIconResult: {
+    float: 'right',
+    'margin-right': '-20px',
+    'margin-top': '5px',
+  },
+};
+
+export default questionStyles;

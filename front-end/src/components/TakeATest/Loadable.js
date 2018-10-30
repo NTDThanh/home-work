@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for ExerciseCreateEditPage
+ * Asynchronously loads the component for TakeATest
  *
  */
 

@@ -10,17 +10,19 @@ import * as C from "./constants";
 export const initialState = fromJS({
   account: "",
   accountErrorTexts: [],
-  accountError: false,
   password: "",
   passwordErrorTexts: [],
-  passwordError: false,
   loginSuccess: false,
   redirectLink: "",
-  mode: C.REGISTER_MODE,
+  mode: C.LOGIN_MODE,
+  loading: false,
   register: {
     userName: "",
+    userNameErrorTexts: [],
     email: "",
+    emailErrorTexts: [],
     password: "",
+    passwordErrorTexts: [],
     image: ""
   }
 });
@@ -37,6 +39,10 @@ function userLoginPageReducer(state = initialState, action) {
         .set("redirectLink", action.payload.redirectLink);
     case C.SWITCH_MODE:
       return state.set("mode", action.payload.mode);
+    case C.START_LOADING:
+      return state.set("loading", true);
+    case C.END_LOADING:
+      return state.set("loading", false);
     default:
       return state;
   }

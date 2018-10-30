@@ -1,7 +1,7 @@
 // import { fromJS } from 'immutable';
-// import { selectExerciseCreateEditPageDomain } from '../selectors';
+// import { selectExerciseCreatePageDomain } from '../selectors';
 
-describe('selectExerciseCreateEditPageDomain', () => {
+describe('selectExerciseCreatePageDomain', () => {
   it('Expect to have unit tests specified', () => {
     expect(true).toEqual(false);
   });

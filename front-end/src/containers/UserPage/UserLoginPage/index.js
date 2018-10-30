@@ -41,28 +41,70 @@ const styles = {
 };
 /* eslint-disable react/prefer-stateless-function */
 export class UserLoginPage extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    // this.validator = new FormValidator([
+    //   {
+    //     field: "account",
+    //     method: "isEmpty",
+    //     validWhen: false,
+    //     message: required()
+    //   },
+    //   {
+    //     field: "password",
+    //     method: "isEmpty",
+    //     validWhen: false,
+    //     message: required()
+    //   }
+    // ]);
+    this.state = {
+      // validation: this.validator.valid()
+    };
+    this.submitted = false;
+  }
   handleLogin = () => {
+    this.submitted = true;
+    // if (this.validation) {
     const loginInfo = {
       user: {
         account: this.props.userloginpage.account,
-        password: this.props.userloginpage.password
+        password: this.props.userloginpage.password,
+        mode: C.LOGIN_MODE
       },
       redirectLink: "/dashboard"
     };
     this.props.actions.handleLogin(loginInfo);
+    // } else {
+    // const states = this.props.userloginpage;
+    // const validations = this.submitted // if the form has been submitted at least once
+    //   ? this.validator.validate(states) // then check validity every time we render
+    //   : this.state.validation; // otherwise just use what's in state
+    this.mapErrorMessage();
+    // }
   };
 
   handleRegister = () => {
+    this.submitted = true;
+    // if (this.validation) {
     const loginInfo = {
       user: {
         userName: this.props.userloginpage.register.userName,
         email: this.props.userloginpage.register.userName,
         password: this.props.userloginpage.register.password,
-        image: this.props.userloginpage.register.image
+        image: this.props.userloginpage.register.image,
+        mode: C.REGISTER_MODE
       },
       redirectLink: "/dashboard"
     };
     this.props.actions.handleLogin(loginInfo);
+    // } else {
+    // const states = this.props.userloginpage;
+    // const validations = this.submitted // if the form has been submitted at least once
+    //   ? this.validator.validate(states) // then check validity every time we render
+    //   : this.state.validation; // otherwise just use what's in state
+    // // console.log(validations);
+    this.mapErrorMessage();
+    // }
   };
 
   handleInputChange = e => {
@@ -85,6 +127,13 @@ export class UserLoginPage extends React.PureComponent {
   switchMode = () => {
     this.props.actions.switchMode(this.props.userloginpage.mode);
   };
+
+  handlePickImage = image => {
+    const reducerPath = ["register", "image"];
+    this.props.actions.onChangeRegisterInput(reducerPath, image);
+  };
+
+  mapErrorMessage = () => {};
 
   //[Todo] Case email correct but password is wrong, show button forget password
   render() {
@@ -150,7 +199,12 @@ export class UserLoginPage extends React.PureComponent {
                     </GridItem>
                   </GridContainer>
                   <br />
-                  <Button color="primary" round onClick={this.handleLogin}>
+                  <Button
+                    color="primary"
+                    round
+                    onClick={this.handleLogin}
+                    loading={userloginpage.loading}
+                  >
                     Login
                   </Button>
                   <br />
@@ -192,7 +246,12 @@ export class UserLoginPage extends React.PureComponent {
           >
             <GridItem xs={10} sm={10} md={4} lg={3} xl={3} justify="center">
               <Card profile>
-                <CardAvatar profile isUpload />
+                <CardAvatar
+                  profile
+                  isUpload
+                  handlePickImage={this.handlePickImage}
+                  image={userloginpage.register.image}
+                />
                 <CardBody profile>
                   <GridContainer>
                     <GridItem xs={12} sm={12} md={12}>
@@ -246,7 +305,12 @@ export class UserLoginPage extends React.PureComponent {
                     </GridItem>
                   </GridContainer>
                   <br />
-                  <Button color="primary" round onClick={this.handleRegister}>
+                  <Button
+                    color="primary"
+                    round
+                    onClick={this.handleRegister}
+                    loading={userloginpage.loading}
+                  >
                     Register
                   </Button>
                   <br />

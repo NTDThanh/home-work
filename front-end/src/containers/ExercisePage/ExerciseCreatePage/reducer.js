@@ -1,6 +1,6 @@
 /*
  *
- * ExerciseCreateEditPage reducer
+ * ExerciseCreatePage reducer
  *
  */
 
@@ -9,7 +9,7 @@ import { DEFAULT_ACTION } from './constants';
 
 export const initialState = fromJS({});
 
-function exerciseCreateEditPageReducer(state = initialState, action) {
+function exerciseCreatePageReducer(state = initialState, action) {
   switch (action.type) {
     case DEFAULT_ACTION:
       return state;
@@ -18,4 +18,4 @@ function exerciseCreateEditPageReducer(state = initialState, action) {
   }
 }
 
-export default exerciseCreateEditPageReducer;
+export default exerciseCreatePageReducer;
