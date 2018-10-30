@@ -4,14 +4,16 @@ using EFCore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.Data.Migrations
 {
     [DbContext(typeof(HomeWorkContext))]
-    partial class AddressContextModelSnapshot : ModelSnapshot
+    [Migration("20181029161839_fix_add_nullable")]
+    partial class fix_add_nullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,8 +25,6 @@ namespace EFCore.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AnswerCode");
 
                     b.Property<DateTime?>("CreateAt")
                         .ValueGeneratedOnAddOrUpdate();
@@ -279,7 +279,7 @@ namespace EFCore.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CorrectAnswerCode");
+                    b.Property<Guid>("CorrectAnswerCode");
 
                     b.Property<int>("CountDown");
 
@@ -296,8 +296,6 @@ namespace EFCore.Data.Migrations
                     b.Property<bool>("IsDelete");
 
                     b.Property<Guid?>("LevelId");
-
-                    b.Property<string>("QuestionCode");
 
                     b.Property<Guid?>("SkillsId");
 
@@ -336,8 +334,6 @@ namespace EFCore.Data.Migrations
                     b.Property<bool>("IsDelete");
 
                     b.Property<string>("Name");
-
-                    b.Property<Guid>("ParentId");
 
                     b.Property<string>("Technology");
 

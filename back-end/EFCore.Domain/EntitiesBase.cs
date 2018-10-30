@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace EFCore.Domain
 {
-    public class Address
+    public class EntitiesBase
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int AddressNo { get; set; }
-        public string AddressNames { get; set; }
-        public County County { get; set; }
-        public City City { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public Guid? CreateBy { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime? CreateAt { get; set; }
         public DateTime? UpdateAt { get; set; }
+        public Guid? UpdateBy { get; set; }
         [Timestamp]
         public byte[] Timestamp { get; set; }
         public bool IsDelete { get; set; }
