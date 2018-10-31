@@ -10,29 +10,29 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Library.API.Controllers
 {
-    [Route("api/questions")]
-    public class QuestionController : Controller
+    [Route("api/questioncollections")]
+    public class QuestionsCollectionsController : Controller
     {
         IQuestionRepository _questionRepository;
-        public QuestionController(IQuestionRepository questionRepository)
+        public QuestionsCollectionsController(IQuestionRepository questionRepository)
         {
             _questionRepository = questionRepository;
         }
 
         [HttpPost]
-        public IActionResult CreateQuestion([FromBody] QuestionCreateDto question)
+        public IActionResult CreateQuestions([FromBody] IEnumerable<QuestionCreateDto> questions)
         {
-            if (question == null)
+            if (questions == null || !questions.Any())
             {
                 return BadRequest();
             }
-            var questionEnties = Mapper.Map<Questions>(question);
-            _questionRepository.AddQuestion(questionEnties);
+            var questionEnties = Mapper.Map<IEnumerable<Questions>>(questions);
+            _questionRepository.AddManyQuestion(questionEnties);
             if (!_questionRepository.Save())
             {
                 return StatusCode(500, "Đăng ký câu hỏi không thành công !");
             }
-            return Ok(questionEnties);
+            return Ok();
         }
     }
 }

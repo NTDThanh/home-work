@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using EFCore.Data;
 using EFCore.Domain;
 using Library.API.Models.Question;
+using System.Collections;
 
 namespace Library.API
 {
@@ -95,9 +96,8 @@ namespace Library.API
                 .ForMember(dest => dest.Answers, opt => opt.MapFrom(src => src.answers));
                 cfg.CreateMap<AnswerDto, Answers>();
             });
-
-
-            libraryContext.EnsureSeedDataForContext();
+            
+            //libraryContext.EnsureSeedDataForContext();
 
             app.UseMvc();
         }
