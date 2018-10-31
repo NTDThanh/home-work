@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="D:\Project\home-work\back-end\EFCore.Data\EFCore.Data.csproj" />
-    <ProjectReference Include="D:\Project\home-work\back-end\EFCore.Domain\EFCore.Domain.csproj" />
+    <ProjectReference Include="..\EFCore.Data\EFCore.Data.csproj" />
+    <ProjectReference Include="..\EFCore.Domain\EFCore.Domain.csproj" />
   </ItemGroup>
  
 </Project>

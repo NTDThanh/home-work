@@ -21,6 +21,7 @@ import ExerciseListPage from 'containers/ExercisePage/ExerciseListPage/Loadable'
 import UserLoginPage from 'containers/UserPage/UserLoginPage/Loadable';
 import UserCreateEditPage from 'containers/UserPage/UserCreateEditPage/Loadable';
 import ExerciseCreatePage from 'containers/ExercisePage/ExerciseCreatePage/Loadable';
+import QuestionListPage from 'containers/QuestionPage/QuestionListPage/Loadable';
 
 const dashboardRoutes = [
   {
@@ -36,6 +37,13 @@ const dashboardRoutes = [
     navbarName: 'Excercise List',
     icon: Dashboard,
     component: ExerciseListPage,
+  },
+  {
+    path: '/question/list',
+    sidebarName: 'Question',
+    navbarName: 'Question page',
+    icon: Dashboard,
+    component: QuestionListPage,
   },
   {
     path: '/login',

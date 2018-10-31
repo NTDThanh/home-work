@@ -91,9 +91,9 @@ namespace Library.API
                 cfg.CreateMap<Models.BookForCreationDto, Entities.Book>();
 
                 //Question mapper
-                cfg.CreateMap<QuestionCreateDto, Questions>();
+                cfg.CreateMap<QuestionCreateDto, Questions>()
+                .ForMember(dest => dest.Answers, opt => opt.MapFrom(src => src.answers));
                 cfg.CreateMap<AnswerDto, Answers>();
-                //.ForMember(dest => de)
             });
 
 

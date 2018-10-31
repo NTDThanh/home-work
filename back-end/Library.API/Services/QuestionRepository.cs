@@ -23,6 +23,13 @@ namespace Library.API.Services
             {
                 question.Id = Guid.NewGuid();
             }
+            foreach (var item in question.Answers)
+            {
+                if (item.Id == Guid.Empty)
+                {
+                    item.Id = Guid.NewGuid();
+                }
+            }
             _context.Add(question);
         }
 

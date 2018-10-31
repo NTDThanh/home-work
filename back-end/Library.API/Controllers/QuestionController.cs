@@ -27,8 +27,12 @@ namespace Library.API.Controllers
                 return BadRequest();
             }
             var questionEnties = Mapper.Map<Questions>(question);
-            //_questionRepository.AddQuestion(question);
-            return View();
+            _questionRepository.AddQuestion(questionEnties);
+            if (!_questionRepository.Save())
+            {
+                return StatusCode(500, "Đăng ký câu hỏi không thành công !");
+            }
+            return Ok();
         }
     }
 }
