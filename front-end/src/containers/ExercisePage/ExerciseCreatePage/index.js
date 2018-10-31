@@ -8,8 +8,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
@@ -18,7 +16,6 @@ import injectReducer from 'utils/injectReducer';
 import makeSelectExerciseCreatePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
 
 import GridItem from 'components/Grid/GridItem.jsx';
 import GridContainer from 'components/Grid/GridContainer.jsx';
@@ -28,12 +25,11 @@ import Card from 'components/Card/Card.jsx';
 import CardHeader from 'components/Card/CardHeader.jsx';
 import Button from 'components/CustomButtons/Button.jsx';
 
-import CardAvatar from 'components/Card/CardAvatar.jsx';
-import avatar from 'assets/img/faces/marc.jpg';
+import GridList from '@material-ui/core/GridList';
+
 import CardFooter from 'components/Card/CardFooter.jsx';
 import SendIcon from '@material-ui/icons/Send';
 import classNames from 'classnames';
-import MenuItem from '@material-ui/core/MenuItem';
 const styles = theme => ({
   cardCategoryWhite: {
     color: 'rgba(255,255,255,.62)',
@@ -172,26 +168,28 @@ export class ExerciseCreatePage extends React.PureComponent {
                       margin="normal"
                     />
                   </GridItem>
-                  <TextField
-                    id="level"
-                    label="Level"
-                    select
-                    className={classes.textField}
-                    margin="normal"
-                    fullWidth
-                    SelectProps={{
-                      native: true,
-                      MenuProps: {
-                        className: classes.menu,
-                      },
-                    }}
-                  >
-                    {levelList.map(option => (
-                      <option key={option.z} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </TextField>
+                  <GridItem xs={12} sm={12} md={5}>
+                    <TextField
+                      id="level"
+                      label="Level"
+                      select
+                      className={classes.textField}
+                      margin="normal"
+                      fullWidth
+                      SelectProps={{
+                        native: true,
+                        MenuProps: {
+                          className: classes.menu,
+                        },
+                      }}
+                    >
+                      {levelList.map(option => (
+                        <option key={option.z} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </TextField>
+                  </GridItem>
                 </GridContainer>
               </CardBody>
               <CardFooter>
@@ -202,26 +200,23 @@ export class ExerciseCreatePage extends React.PureComponent {
               </CardFooter>
             </Card>
           </GridItem>
-          <GridItem xs={12} sm={12} md={4}>
-            <Card profile>
-              <CardAvatar profile>
-                <a href="#pablo" onClick={e => e.preventDefault()}>
-                  <img src={avatar} alt="..." />
-                </a>
-              </CardAvatar>
-              <CardBody profile>
-                <h6 className={classes.cardCategory}>CEO / CO-FOUNDER</h6>
-                <h4 className={classes.cardTitle}>Alec Thompson</h4>
-                <p className={classes.description}>
-                  Don't be scared of the truth because we need to restart the
-                  human foundation in truth And I love you like Kanye loves
-                  Kanye I love Rick Owens’ bed design but the back is...
-                </p>
-                <Button color="primary" round>
-                  Follow
-                </Button>
-              </CardBody>
-            </Card>
+
+          <GridItem xs={12} sm={12} md={3}>
+              <Card>
+                <CardHeader color="primary">Questions</CardHeader>
+                <CardBody>Noi dung</CardBody>
+                <CardFooter>Action</CardFooter>
+              </Card>
+              <Card>
+                <CardHeader color="primary">Skills</CardHeader>
+                <CardBody>Noi dung</CardBody>
+                <CardFooter>Action</CardFooter>
+              </Card>
+              <Card>
+                <CardHeader color="primary">Level</CardHeader>
+                <CardBody>Noi dung</CardBody>
+                <CardFooter>Action</CardFooter>
+              </Card>
           </GridItem>
         </GridContainer>
       </div>
