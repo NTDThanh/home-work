@@ -32,7 +32,7 @@ import CardBody from 'components/Card/CardBody.jsx';
 
 import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton';
-import pageBaseStyle from 'assets/jss/material-dashboard-react/components/tasksStyle.jsx';
+import pageBaseStyle from 'assets/jss/material-dashboard-react/components/pageBaseStyle.jsx';
 // const styles = {
 //   cardCategoryWhite: {
 //     '&,& a,& a:hover,& a:focus': {

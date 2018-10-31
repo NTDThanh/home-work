@@ -20,7 +20,7 @@ namespace Library.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateQuestion([FromBody] QuestionCreateDto question)
+        public IActionResult CreateQuestion([FromBody] List<QuestionCreateDto> question)
         {
             if (question == null)
             {
@@ -28,11 +28,27 @@ namespace Library.API.Controllers
             }
             var questionEnties = Mapper.Map<Questions>(question);
             _questionRepository.AddQuestion(questionEnties);
-            if (!_questionRepository.Save())
-            {
-                return StatusCode(500, "Đăng ký câu hỏi không thành công !");
-            }
-            return Ok();
+            //if (!_questionRepository.Save())
+            //{
+            //    return StatusCode(500, "Đăng ký câu hỏi không thành công !");
+            //}
+            return Ok(questionEnties);
         }
+
+        //[HttpPost]
+        //public IActionResult CreateQuestions([FromBody] List<QuestionCreateDto> questions)
+        //{
+        //    if (questions == null || questions.Any())
+        //    {
+        //        return BadRequest();
+        //    }
+        //    var questionEnties = Mapper.Map<Questions>(questions);
+        //    _questionRepository.AddQuestion(questionEnties);
+        //    //if (!_questionRepository.Save())
+        //    //{
+        //    //    return StatusCode(500, "Đăng ký câu hỏi không thành công !");
+        //    //}
+        //    return Ok(questionEnties);
+        //}
     }
 }
