@@ -33,12 +33,17 @@ import pageBaseStyle from 'assets/jss/material-dashboard-react/components/pageBa
 import AutoCompelete from '../../../components/AutoCompelete';
 import csv from 'csv-parser';
 import { encryptionToString } from '../../../utils/security';
+import ProgressDialog from '../../../components/Dialog/Progress';
 
 /* eslint-disable react/prefer-stateless-function */
 export class QuestionListPage extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      listQuestion: [],
+      openProgress: false,
+      startProgress: false,
+    };
   }
 
   handleEdit = question => {};
@@ -79,11 +84,19 @@ export class QuestionListPage extends React.PureComponent {
       stream.end(() => {
         console.timeStamp('start');
         const listQuestion = this.convertCsvToOject(listRecord);
+        this.setState({
+          listQuestion,
+          openProgress: true,
+          startProgress: true,
+        });
         console.timeStamp('end');
-        console.log('listQuestion', listQuestion);
       });
     });
   };
+
+  handleCloseDialog = () => {
+    this.setState({openProgress:false})
+  }
 
   convertCsvToOject = importedQuestions => {
     let listQuestion = [];
@@ -206,6 +219,12 @@ export class QuestionListPage extends React.PureComponent {
                 />
               </CardBody>
             </Card>
+            <ProgressDialog
+              open={this.state.openProgress}
+              startProgress={this.state.startProgress}
+              recordCount={this.state.listQuestion.length}
+              handleClose={this.handleCloseDialog}
+            />
           </GridItem>
         </GridContainer>
       </div>

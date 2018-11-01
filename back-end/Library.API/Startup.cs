@@ -13,6 +13,7 @@ using EFCore.Data;
 using EFCore.Domain;
 using Library.API.Models.Question;
 using System.Collections;
+using Library.API.Models.Category;
 
 namespace Library.API
 {
@@ -54,6 +55,7 @@ namespace Library.API
             services.AddScoped<ILibraryRepository, LibraryRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IQuestionRepository, QuestionRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -95,8 +97,10 @@ namespace Library.API
                 cfg.CreateMap<QuestionCreateDto, Questions>()
                 .ForMember(dest => dest.Answers, opt => opt.MapFrom(src => src.answers));
                 cfg.CreateMap<AnswerDto, Answers>();
+                cfg.CreateMap<SkillDto, Skills>();
+                cfg.CreateMap<LevelDto, Levels>();
             });
-            
+
             //libraryContext.EnsureSeedDataForContext();
 
             app.UseMvc();

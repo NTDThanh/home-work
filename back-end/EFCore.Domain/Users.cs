@@ -16,6 +16,7 @@ namespace EFCore.Domain
         public string Password { get; set; }
         public string Slat { get; set; }
         public string Address { get; set; }
+        [Column(TypeName = "VARCHAR(MAX)")]
         public string Image { get; set; }
         public string Description { get; set; }
         public string Phone { get; set; }

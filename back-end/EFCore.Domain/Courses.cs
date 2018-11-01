@@ -12,6 +12,7 @@ namespace EFCore.Domain
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string Name { get; set; }
+        [Column(TypeName = "VARCHAR(MAX)")]
         public string Image { get; set; }
         public string Description { get; set; }
         public virtual ICollection<Levels> Level { get; set; }
