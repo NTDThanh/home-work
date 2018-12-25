@@ -96,9 +96,15 @@ namespace Library.API
                 //Question mapper
                 cfg.CreateMap<QuestionCreateDto, Questions>()
                 .ForMember(dest => dest.Answers, opt => opt.MapFrom(src => src.answers));
+
+                cfg.CreateMap<QuestionUpdateDto, Questions>();
+                cfg.CreateMap<Questions, QuestionDto>();
+                cfg.CreateMap<Questions, QuestionUpdateDto>();
+
                 cfg.CreateMap<AnswerDto, Answers>();
                 cfg.CreateMap<SkillDto, Skills>();
                 cfg.CreateMap<LevelDto, Levels>();
+
             });
 
             //libraryContext.EnsureSeedDataForContext();

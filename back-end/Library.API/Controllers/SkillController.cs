@@ -22,7 +22,7 @@ namespace Library.API.Controllers
         [HttpGet]
         public IActionResult GetSkill()
         {
-
+            return Ok();
         }
 
         [HttpPost]
@@ -34,6 +34,8 @@ namespace Library.API.Controllers
             if (!_categoryRepository.Save()) {
                 return StatusCode(500, "Đăng ký skill không thành công !");
             }
+
+            return Ok();
         }
     }
 }

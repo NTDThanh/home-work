@@ -34,5 +34,12 @@ namespace Library.API.Controllers
             }
             return Ok();
         }
+
+        [HttpGet]
+        public IActionResult GetQuestions()
+        {
+           var result =  _questionRepository.GetQuestions();
+            return Ok(result);
+        }
     }
 }
