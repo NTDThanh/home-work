@@ -1,15 +1,14 @@
-const path = require("path");
-const webpack = require("webpack");
-const webpackDevMiddleware = require("webpack-dev-middleware");
-const webpackHotMiddleware = require("webpack-hot-middleware");
-const express = require("express");
+const path = require('path');
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 
 function createWebpackMiddleware(compiler, publicPath) {
   return webpackDevMiddleware(compiler, {
-    logLevel: "warn",
+    logLevel: 'warn',
     publicPath,
     silent: true,
-    stats: "errors-only"
+    stats: 'errors-only',
   });
 }
 
@@ -17,7 +16,7 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
   const compiler = webpack(webpackConfig);
   const middleware = createWebpackMiddleware(
     compiler,
-    webpackConfig.output.publicPath
+    webpackConfig.output.publicPath,
   );
 
   app.use(middleware);
@@ -27,11 +26,8 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
   // artifacts, we use it instead
   const fs = middleware.fileSystem;
 
-  // add assets path
-  app.use("/assets", express.static(path.resolve(process.cwd(), "assets")));
-
-  app.get("*", (req, res) => {
-    fs.readFile(path.join(compiler.outputPath, "index.html"), (err, file) => {
+  app.get('*', (req, res) => {
+    fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
       if (err) {
         res.sendStatus(404);
       } else {

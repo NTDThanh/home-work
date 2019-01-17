@@ -7,7 +7,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import withStyles from "@material-ui/core/styles/withStyles";
 {{#if wantHeaders}}
 import { Helmet } from 'react-helmet';
 {{/if}}
@@ -17,7 +16,7 @@ import { FormattedMessage } from 'react-intl';
 {{#if wantActionsAndReducer}}
 import { createStructuredSelector } from 'reselect';
 {{/if}}
-import { compose } from 'redux';
+import { compose, bindActionCreators } from 'redux';
 
 {{#if wantSaga}}
 import injectSaga from 'utils/injectSaga';
@@ -26,6 +25,7 @@ import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelect{{properCase name}} from './selectors';
 import reducer from './reducer';
+import * as actions from './actions';
 {{/if}}
 {{#if wantSaga}}
 import saga from './saga';
@@ -34,7 +34,6 @@ import saga from './saga';
 import messages from './messages';
 {{/if}}
 
-const styles ={};
 /* eslint-disable react/prefer-stateless-function */
 export class {{ properCase name }} extends {{{ type }}} {
 render() {
@@ -60,13 +59,13 @@ dispatch: PropTypes.func.isRequired,
 
 {{#if wantActionsAndReducer}}
 const mapStateToProps = createStructuredSelector({
-{{ lowerCase name }}: makeSelect{{properCase name}}(),
+{{ camelCase name }}: makeSelect{{properCase name}}(),
 });
 {{/if}}
 
 function mapDispatchToProps(dispatch) {
 return {
-dispatch,
+actions: bindActionCreators(actions, dispatch),
 };
 }
 
@@ -76,7 +75,6 @@ mapStateToProps,
 mapDispatchToProps
 );
 
-const withStyle = withStyles(styles);
 const withReducer = injectReducer({ key: '{{ camelCase name }}', reducer });
 {{else}}
 const withConnect = connect(null, mapDispatchToProps);
@@ -92,6 +90,5 @@ withReducer,
 {{#if wantSaga}}
 withSaga,
 {{/if}}
-withConnect,
-withStyle
+withConnect
 )({{ properCase name }});
