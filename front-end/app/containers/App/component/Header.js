@@ -80,7 +80,10 @@ class TopHeader extends PureComponent {
       <Header className="page-header">
         <Row className="page-header-row-content">
           <Col sm={6}>
-            <h4 className="page-title">{PAGE_TITLE}</h4>
+            <h4 className="page-title">
+              <Icon type="star" />
+              {`  ${PAGE_TITLE}`}
+            </h4>
           </Col>
           <Col sm={17}>
             <Dropdown overlay={this.menu}>

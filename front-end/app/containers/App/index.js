@@ -68,7 +68,7 @@ export default class App extends React.Component {
                 reload={this.state.pageReload}
                 reloadAppPage={this.reloadAppPage}
               />
-              <Content style={{ margin: '16px 16px 0px 16px' }}>
+              <Content>
                 <div className="main">
                   <Switch>
                     <Route path="/" component={HomePage} />

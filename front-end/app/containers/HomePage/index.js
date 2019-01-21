@@ -19,6 +19,7 @@ import reducer from './reducer';
 import * as actions from './actions';
 import saga from './saga';
 import messages from './messages';
+import Baner from '../../components/Baner';
 
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.Component {
@@ -29,6 +30,7 @@ export class HomePage extends React.Component {
           <title>HomePage</title>
           <meta name="description" content="Description of HomePage" />
         </Helmet>
+        <Baner />
         <FormattedMessage {...messages.header} />
       </div>
     );

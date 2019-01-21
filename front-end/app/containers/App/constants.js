@@ -14,4 +14,4 @@ export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
 export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
 
 // text, header, menu
-export const PAGE_TITLE = '画像動画変換システム管理画面';
+export const PAGE_TITLE = 'Certificate';
