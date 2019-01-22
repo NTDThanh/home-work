@@ -23,7 +23,7 @@ namespace Library.API.Helpers
             var value = bindingContext.ValueProvider
                 .GetValue(bindingContext.ModelName).ToString();
 
-            // If that value is null or whitespace, we return null
+            // If that value is null or whitespace, we return null - Check for bad request
             if (string.IsNullOrWhiteSpace(value))
             {
                 bindingContext.Result = ModelBindingResult.Success(null);

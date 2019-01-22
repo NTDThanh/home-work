@@ -65,6 +65,7 @@ namespace Library.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
             }
             else
             {
@@ -104,7 +105,7 @@ namespace Library.API
                 cfg.CreateMap<AnswerDto, Answers>();
                 cfg.CreateMap<SkillDto, Skills>();
                 cfg.CreateMap<LevelDto, Levels>();
-
+                cfg.CreateMap<QuestionDto, Questions>();
             });
 
             //libraryContext.EnsureSeedDataForContext();

@@ -20,7 +20,11 @@ namespace Library.API.Controllers
         [HttpPost]
         public IActionResult CreateQuestion([FromBody] QuestionCreateDto question)
         {
-            //comment
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             if (question == null)
             {
                 return BadRequest();
