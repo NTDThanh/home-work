@@ -36,8 +36,16 @@ namespace Library.API.Services
             _context.Add(question);
         }
 
+
+
         public void AddManyQuestion(IEnumerable<Questions> questions)
         {
+            foreach (var question in questions)
+            {
+                question.Id = new Guid();
+            }
+
+            _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
             _context.AddRange(questions);
         }
 
@@ -110,6 +118,11 @@ namespace Library.API.Services
         public bool Save()
         {
             return (_context.SaveChanges() >= 0);
+        }
+
+        public IEnumerable<Questions> GetCollectionQuestions(IEnumerable<Guid> ids)
+        {
+            return _context.Questions.Where(x => ids.Contains(x.Id));
         }
     }
 }

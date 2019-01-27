@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
 	<PackageReference Include="AutoMapper" Version="5.2.0" />
-	<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
+	<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,6 +17,11 @@
   <ItemGroup>
     <ProjectReference Include="..\EFCore.Data\EFCore.Data.csproj" />
     <ProjectReference Include="..\EFCore.Domain\EFCore.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\Interface\" />
+    <Folder Include="Services\Repository\" />
   </ItemGroup>
  
 </Project>

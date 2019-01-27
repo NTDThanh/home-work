@@ -1,7 +1,9 @@
 ﻿using EFCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 namespace Library.API.Models.Question
@@ -18,12 +20,15 @@ namespace Library.API.Models.Question
         public Skills skills { get; set; }
         public Levels level { get; set; }
     }
+
     public class AnswerDto
     {
         public string answerCode { get; set; }
         public string detail { get; set; }
         public string note { get; set; }
     }
+
+    
 }
 
 

@@ -10,6 +10,7 @@ namespace Library.API.Services
     {
         #region Questions
         IEnumerable<Questions> GetQuestions();
+        IEnumerable<Questions> GetCollectionQuestions(IEnumerable<Guid> ids);
         IEnumerable<Questions> GetQuestionsOfExercise(Guid exersiceId);
         Questions GetQuestion(Guid questionId);
         void AddQuestion(Questions questions);
