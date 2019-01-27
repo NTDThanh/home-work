@@ -34,77 +34,77 @@ namespace Library.API.Controllers
             return Ok(questionEnties);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateQuestion(Guid id, [FromBody] QuestionUpdateDto question)
-        {
-            if (question == null)
-                return BadRequest();
+        //[HttpPut("{id}")]
+        //public IActionResult UpdateQuestion(Guid id, [FromBody] QuestionUpdateDto question)
+        //{
+        //    if (question == null)
+        //        return BadRequest();
 
-            var questionFromRepo = _questionRepository.GetQuestion(id);
-            if (questionFromRepo == null)
-            {
-                var questionAdd = Mapper.Map<Questions>(question);
-                questionAdd.Id = id;
-                _questionRepository.AddQuestion(questionAdd);
-                if (!_questionRepository.Save())
-                {
-                    throw new Exception($"Create question {id} for question failse on save");
-                }
+        //    var questionFromRepo = _questionRepository.GetQuestion(id);
+        //    if (questionFromRepo == null)
+        //    {
+        //        var questionAdd = Mapper.Map<Questions>(question);
+        //        questionAdd.Id = id;
+        //        _questionRepository.AddQuestion(questionAdd);
+        //        if (!_questionRepository.Save())
+        //        {
+        //            throw new Exception($"Create question {id} for question failse on save");
+        //        }
 
-                var questionReturn = Mapper.Map<QuestionDto>(questionAdd);
+        //        var questionReturn = Mapper.Map<QuestionDto>(questionAdd);
 
-                return CreatedAtRoute("GetQuestion", new { id = questionAdd.Id }, questionReturn);
-            }
+        //        return CreatedAtRoute("GetQuestion", new { id = questionAdd.Id }, questionReturn);
+        //    }
 
-            Mapper.Map(question, questionFromRepo);
+        //    Mapper.Map(question, questionFromRepo);
 
-            _questionRepository.UpdateQuestion(questionFromRepo);
+        //    _questionRepository.UpdateQuestion(questionFromRepo);
 
-            if (!_questionRepository.Save())
-            {
-                throw new Exception($"Updating question {id} for question failse on save");
-            }
+        //    if (!_questionRepository.Save())
+        //    {
+        //        throw new Exception($"Updating question {id} for question failse on save");
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
-        [HttpPatch("{id}")]
-        public IActionResult PartiallyUpdateQuestion(Guid id, [FromBody] JsonPatchDocument<QuestionUpdateDto> pathQuestion)
-        {
-            if (pathQuestion == null)
-                return BadRequest();
+        //[HttpPatch("{id}")]
+        //public IActionResult PartiallyUpdateQuestion(Guid id, [FromBody] JsonPatchDocument<QuestionUpdateDto> pathQuestion)
+        //{
+        //    if (pathQuestion == null)
+        //        return BadRequest();
 
-            var questionFromRepo = _questionRepository.GetQuestion(id);
-            if (questionFromRepo == null)
-            {
-                var questionDto = new QuestionUpdateDto();
-                pathQuestion.ApplyTo(questionDto);
+        //    var questionFromRepo = _questionRepository.GetQuestion(id);
+        //    if (questionFromRepo == null)
+        //    {
+        //        var questionDto = new QuestionUpdateDto();
+        //        pathQuestion.ApplyTo(questionDto);
 
-                var questionAdd = Mapper.Map<Questions>(questionDto);
-                questionAdd.Id = id;
+        //        var questionAdd = Mapper.Map<Questions>(questionDto);
+        //        questionAdd.Id = id;
 
-                _questionRepository.AddQuestion(questionAdd);
-                if (!_questionRepository.Save())
-                {
-                    throw new Exception($"Updating question {id} for question failse on save");
-                }
-                var questionReturn = Mapper.Map<QuestionDto>(questionAdd);
-                return CreatedAtRoute("GetQuestion", new { id = questionAdd.Id }, questionReturn);
-            }
+        //        _questionRepository.AddQuestion(questionAdd);
+        //        if (!_questionRepository.Save())
+        //        {
+        //            throw new Exception($"Updating question {id} for question failse on save");
+        //        }
+        //        var questionReturn = Mapper.Map<QuestionDto>(questionAdd);
+        //        return CreatedAtRoute("GetQuestion", new { id = questionAdd.Id }, questionReturn);
+        //    }
 
-            var questionToPatch = Mapper.Map<QuestionUpdateDto>(questionFromRepo);
-            pathQuestion.ApplyTo(questionToPatch);
+        //    var questionToPatch = Mapper.Map<QuestionUpdateDto>(questionFromRepo);
+        //    pathQuestion.ApplyTo(questionToPatch);
 
-            Mapper.Map(questionToPatch, questionFromRepo);
-            _questionRepository.UpdateQuestion(questionFromRepo);
+        //    Mapper.Map(questionToPatch, questionFromRepo);
+        //    _questionRepository.UpdateQuestion(questionFromRepo);
 
-            if (!_questionRepository.Save())
-            {
-                throw new Exception($"Updating question {id} for question failse on save");
-            }
+        //    if (!_questionRepository.Save())
+        //    {
+        //        throw new Exception($"Updating question {id} for question failse on save");
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
         [HttpGet("{id}", Name = "GetQuestion")]
         public IActionResult GetQuestion(Guid id)

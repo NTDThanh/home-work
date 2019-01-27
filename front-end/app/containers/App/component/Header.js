@@ -80,23 +80,20 @@ class TopHeader extends PureComponent {
       <Header className="page-header">
         <Row className="page-header-row-content">
           <Col sm={6}>
-            <h4 className="page-title">
-              <Icon type="star" />
-              {`  ${PAGE_TITLE}`}
-            </h4>
+            <Icon type="star" />
           </Col>
           <Col sm={17}>
-            <Dropdown overlay={this.menu}>
-              <Button size="large">
-                Category <Icon type="down" />
-              </Button>
-            </Dropdown>
             <Search
               placeholder="What do you want to test ?"
               onSearch={value => console.log(value)}
               className="header-search"
               size="large"
             />
+            <Dropdown overlay={this.menu}>
+              <Button size="large">
+                Category <Icon type="down" />
+              </Button>
+            </Dropdown>
           </Col>
           <Col sm={1}>
             <Avatar className="header-avatar" size={48} icon="user" />

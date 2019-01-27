@@ -17,9 +17,11 @@ import TopHeader from './component/Header';
 import MainFooter from './component/Footer';
 import styles from './styles.less'; // eslint-disable-line
 import TabMenu from '../../components/TabMenu';
+import AppBarOnTop from './AppBarOnTop';
 // import ControlArea from '../../components/ControlArea';
 // import AuthorityControl from '../../components/AuthorityControl';
 // import * as globalConst from '../../constants';
+import style from './styles.less';
 
 const { Content } = Layout;
 
@@ -55,19 +57,8 @@ export default class App extends React.Component {
             <title>Home-word</title>
             <meta name="description" content="Home-word" />
           </Helmet>
-          {/* <ControlArea
-            currentPath={window.location.pathname}
-            reloadAppPage={this.reloadAppPage}
-            {...this.props}
-          > */}
           <Layout style={{ minHeight: '100vh' }}>
-            {/* <MainSider /> */}
-            <Layout>
-              <TopHeader handleLogout={this.handleLogoutAction} />
-              <TabMenu
-                reload={this.state.pageReload}
-                reloadAppPage={this.reloadAppPage}
-              />
+            <AppBarOnTop>
               <Content>
                 <div className="main">
                   <Switch>
@@ -78,7 +69,7 @@ export default class App extends React.Component {
                 </div>
               </Content>
               <MainFooter />
-            </Layout>
+            </AppBarOnTop>
           </Layout>
           {/* </ControlArea> */}
         </React.Fragment>
