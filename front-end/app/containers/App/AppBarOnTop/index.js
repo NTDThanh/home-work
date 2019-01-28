@@ -9,7 +9,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
-import { Layout, Menu, Breadcrumb, Icon, Button, Row } from 'antd';
+import {
+  Layout,
+  Menu,
+  Breadcrumb,
+  Icon,
+  Button,
+  Row,
+  Badge,
+  Input,
+  Col,
+  Avatar,
+} from 'antd';
 import { compose, bindActionCreators } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
@@ -41,21 +52,36 @@ export class AppBarOnTop extends React.PureComponent {
     return (
       <Layout>
         <Header className="header">
-          <div className="logo-custom">
-            <Button
-              className="button-outline-logo-image"
-              onClick={this.toggleCollapsed}
-            >
-              <img className="logo-image" src={logo} alt="logo" />
-            </Button>
-          </div>
           <Row className="header-controls">
-            <SearchWithCategory />
+            <Col span={2}>
+              <Button
+                className="button-outline-logo-image"
+                onClick={this.toggleCollapsed}
+              >
+                <img className="logo-image" src={logo} alt="logo" />
+              </Button>
+            </Col>
+            <Col span={17}>
+              <SearchWithCategory />
+            </Col>
+            <Col span={5}>
+              <div className="header-user-notification">
+                <Button className="large-icon-border header-notification-button">
+                  <Badge dot style={{ padding: 5 }}>
+                    <Icon type="bell" className="large-icon" />
+                  </Badge>
+                </Button>
+                <Button className="large-icon-border header-user-avatar">
+                  <span className="header-user-name">Tạ Duy Thanh</span>
+                  <Avatar icon="user" style={{ height: 30, width: 30 }} />
+                </Button>
+              </div>
+            </Col>
           </Row>
         </Header>
         <Layout>
           <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+            <Menu mode="inline" defaultSelectedKeys={['1']}>
               <Menu.Item key="1">
                 <Icon type="user" />
                 <span>nav 1</span>
@@ -70,21 +96,15 @@ export class AppBarOnTop extends React.PureComponent {
               </Menu.Item>
             </Menu>
           </Sider>
-          <Layout style={{ padding: '0 24px 24px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
+          <Layout>
             <Content
               style={{
-                background: '#fff',
-                padding: 24,
+                background: '#F3F3F3',
+                padding: 20,
                 margin: 0,
-                minHeight: 280,
               }}
             >
-              Content
+              {this.props.children}
             </Content>
           </Layout>
         </Layout>
