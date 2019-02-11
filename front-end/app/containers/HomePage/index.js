@@ -14,17 +14,54 @@ import { compose, bindActionCreators } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
+import { Row, Col } from 'antd';
 import makeSelectHomePage from './selectors';
 import reducer from './reducer';
 import * as actions from './actions';
 import saga from './saga';
 import messages from './messages';
+<<<<<<< HEAD
 import Baner from '../../components/Baner';
 import {
   getApiUrlByEnvironment,
   getApiLoadBalancerUrlByEnvironment,
 } from '../../../api/apiUrl';
+=======
+import CategoryItemMedium from '../../components/CategoryItemMedium';
+// eslint-disable-next-line
+import categoryItemMediumStyle from '../../components/CategoryItemMedium/style.less';
+import * as globalStyle from '../../global-styles';
+import BigAlert from '../../components/BigAlert';
+// eslint-disable-next-line
+import styles from './styles.less';
+>>>>>>> origin/master
 
+const mockCategory = [
+  {
+    categoryName: 'Tests',
+    number: 123,
+    iconName: 'profile',
+    grandients: globalStyle.GrandientsBlue,
+  },
+  {
+    categoryName: 'Fields',
+    number: '05',
+    iconName: 'fork',
+    grandients: globalStyle.GrandientsOrange,
+  },
+  {
+    categoryName: 'Examinee',
+    number: 20,
+    iconName: 'team',
+    grandients: globalStyle.GrandientsYellow,
+  },
+  {
+    categoryName: 'Create test',
+    number: 123,
+    iconName: 'form',
+    grandients: globalStyle.GrandientsGreen,
+  },
+];
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.Component {
   render() {
@@ -39,7 +76,23 @@ export class HomePage extends React.Component {
           <title>HomePage</title>
           <meta name="description" content="Description of HomePage" />
         </Helmet>
-        <Baner />
+        <Row gutter={25}>
+          {mockCategory.map(item => (
+            <Col span={24 / 4}>
+              <CategoryItemMedium {...item} />
+            </Col>
+          ))}
+        </Row>
+        <Row className="home-big-alert">
+          <BigAlert
+            grandients={globalStyle.GrandientsAlert}
+            iconGrandients={globalStyle.GrandientsYellow}
+            iconName="star"
+            buttonText="Join Us"
+            header="Test you skills"
+            subHeader="For free"
+          />
+        </Row>
         <FormattedMessage {...messages.header} />
       </div>
     );
