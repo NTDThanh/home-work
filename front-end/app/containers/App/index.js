@@ -57,7 +57,7 @@ export default class App extends React.Component {
             <title>Home-word</title>
             <meta name="description" content="Home-word" />
           </Helmet>
-          <Layout style={{ minHeight: '100vh' }}>
+          <Layout style={{ minHeight: '100vh', backgroundColor: '#F3F3F3' }}>
             <AppBarOnTop>
               <Content>
                 <div className="main">

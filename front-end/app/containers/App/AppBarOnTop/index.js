@@ -68,7 +68,11 @@ export class AppBarOnTop extends React.PureComponent {
               <div className="header-user-notification">
                 <Button className="large-icon-border header-notification-button">
                   <Badge dot style={{ padding: 5 }}>
-                    <Icon type="bell" className="large-icon" />
+                    <Icon
+                      type="bell"
+                      theme="filled"
+                      className="large-icon header-icon"
+                    />
                   </Badge>
                 </Button>
                 <Button className="large-icon-border header-user-avatar">
@@ -80,8 +84,17 @@ export class AppBarOnTop extends React.PureComponent {
           </Row>
         </Header>
         <Layout>
-          <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-            <Menu mode="inline" defaultSelectedKeys={['1']}>
+          <Sider
+            className="menu-sider"
+            trigger={null}
+            collapsible
+            collapsed={this.state.collapsed}
+          >
+            <Menu
+              mode="inline"
+              defaultSelectedKeys={['1']}
+              className="menu-left-side"
+            >
               <Menu.Item key="1">
                 <Icon type="user" />
                 <span>nav 1</span>
@@ -100,7 +113,7 @@ export class AppBarOnTop extends React.PureComponent {
             <Content
               style={{
                 background: '#F3F3F3',
-                padding: 20,
+                padding: '30px 30px 0px 35px',
                 margin: 0,
               }}
             >

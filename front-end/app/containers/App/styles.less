@@ -1,7 +1,7 @@
 @top-header-height: 86px;
 @image-logo-sizes: 40px;
 @header-item-height: 54px;
-@header-margin-base: 20px;
+@header-margin-base: 0px 31px 0px 20px;
 
 // overide base font of ant-design
 * {
@@ -68,10 +68,9 @@
 }
 
 .header {
-  padding: 0px @header-margin-base;
+  padding: @header-margin-base;
   background: #fff;
   height: @top-header-height;
-  line-height: none;
 }
 
 .header-avatar {
@@ -182,4 +181,24 @@
   span.header-user-name {
     margin-right: 20px;
   }
+}
+
+.header-icon {
+  color: #dcdcdc;
+}
+
+.menu-sider {
+  background: white;
+  border-right: none;
+}
+.menu-left-side {
+  border-right: none;
+}
+.menu-left-side li:nth-child(1) {
+  margin-top: 0px;
+  border-top: 1px solid #f8f8fb;
+}
+
+.ant-card-bordered {
+  border: 1px solid #e4e4e4 !important;
 }
