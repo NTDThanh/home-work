@@ -52,7 +52,7 @@ function BigAlert(props) {
     },
   };
   return (
-    <React.Fragment>
+    <>
       <Layout style={styles.content}>
         <div style={styles.icon}>
           <IconCricle
@@ -76,7 +76,7 @@ function BigAlert(props) {
           {props.buttonText}
         </Button>
       </Layout>
-    </React.Fragment>
+    </>
   );
 }
 

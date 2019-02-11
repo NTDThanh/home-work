@@ -27,6 +27,9 @@ import * as globalStyle from '../../global-styles';
 import BigAlert from '../../components/BigAlert';
 // eslint-disable-next-line
 import styles from './styles.less';
+import BreadcrumbWithTitle from '../../components/BreadcrumbWithTitle';
+import FilterList from '../../components/FilterList';
+import ButtonWithLargeIcon from '../../components/ButtonWithLargeIcon';
 
 const mockCategory = [
   {
@@ -54,9 +57,29 @@ const mockCategory = [
     grandients: globalStyle.GrandientsGreen,
   },
 ];
+const mockListUrlForBreabcrumb = [
+  { url: 'home', urlName: 'Home' },
+  { url: 'profile', urlName: 'Profile' },
+  { url: 'favorite', urlName: 'Favorite' },
+];
+
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.Component {
+  state = {
+    listDisplayType: 'grid',
+  };
+
+  handleChangeDisplayType = () => {
+    const { listDisplayType } = this.state;
+    this.setState({
+      listDisplayType: listDisplayType === 'grid' ? 'list' : 'grid',
+    });
+  };
+
   render() {
+    const displayTypeIcon =
+      this.state.listDisplayType === 'grid' ? 'appstore' : 'database';
+    const displayTypeButtonFocus = this.state.listDisplayType !== 'grid';
     return (
       <div>
         <Helmet>
@@ -79,6 +102,30 @@ export class HomePage extends React.Component {
             header="Test you skills"
             subHeader="For free"
           />
+        </Row>
+        <Row className="home-title-filter" gutter={15}>
+          <Col span={18}>
+            <BreadcrumbWithTitle
+              header="Based on your profile and favorite"
+              listUrl={mockListUrlForBreabcrumb}
+            />
+          </Col>
+          <Col span={6}>
+            <div style={{ float: 'right' }}>
+              <ul className="home-list-actions">
+                <li>
+                  <FilterList dropdown />
+                </li>
+                <li>
+                  <ButtonWithLargeIcon
+                    iconName={displayTypeIcon}
+                    onClick={this.handleChangeDisplayType}
+                    focus={displayTypeButtonFocus}
+                  />
+                </li>
+              </ul>
+            </div>
+          </Col>
         </Row>
         <FormattedMessage {...messages.header} />
       </div>
