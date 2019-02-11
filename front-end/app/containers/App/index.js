@@ -64,10 +64,10 @@ export default class App extends React.Component {
             {/* <MainSider /> */}
             <Layout>
               <TopHeader handleLogout={this.handleLogoutAction} />
-              <TabMenu
+              {/* <TabMenu
                 reload={this.state.pageReload}
                 reloadAppPage={this.reloadAppPage}
-              />
+              /> */}
               <Content>
                 <div className="main">
                   <Switch>

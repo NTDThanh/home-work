@@ -56,6 +56,9 @@ namespace Library.API
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IQuestionRepository, QuestionRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+            // 1. Define in status ConfigureServices
+            services.AddHttpCacheHeaders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -98,9 +101,9 @@ namespace Library.API
                 cfg.CreateMap<QuestionCreateDto, Questions>()
                 .ForMember(dest => dest.Answers, opt => opt.MapFrom(src => src.answers));
 
-                cfg.CreateMap<QuestionUpdateDto, Questions>();
+                //cfg.CreateMap<QuestionUpdateDto, Questions>();
                 cfg.CreateMap<Questions, QuestionDto>();
-                cfg.CreateMap<Questions, QuestionUpdateDto>();
+                //cfg.CreateMap<Questions, QuestionUpdateDto>();
 
                 cfg.CreateMap<AnswerDto, Answers>();
                 cfg.CreateMap<SkillDto, Skills>();
@@ -109,6 +112,7 @@ namespace Library.API
             });
 
             //libraryContext.EnsureSeedDataForContext();
+            app.UserHttpCacheHeaders();
 
             app.UseMvc();
         }

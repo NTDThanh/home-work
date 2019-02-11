@@ -20,10 +20,19 @@ import * as actions from './actions';
 import saga from './saga';
 import messages from './messages';
 import Baner from '../../components/Baner';
+import {
+  getApiUrlByEnvironment,
+  getApiLoadBalancerUrlByEnvironment,
+} from '../../../api/apiUrl';
 
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.Component {
   render() {
+    console.log('getApiUrlByEnvironment', getApiUrlByEnvironment());
+    console.log(
+      'getApiLoadBalancerUrlByEnvironment',
+      getApiLoadBalancerUrlByEnvironment(),
+    );
     return (
       <div>
         <Helmet>
