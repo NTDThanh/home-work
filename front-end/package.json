@@ -21,8 +21,11 @@
     "preinstall": "npm run npmcheckversion",
     "prebuild": "npm run build:clean",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
+    "build:test": "cross-env NODE_ENV=test webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
+    "build:staging": "cross-env NODE_ENV=staging webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
+    "build:dev": "cross-env NODE_ENV=development webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
     "build:clean": "rimraf ./build",
-    "start": "cross-env NODE_ENV=development node server",
+    "start": "cross-env NODE_ENV=test node server",
     "start:tunnel": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
     "start:production": "npm run test && npm run build && npm run start:prod",
     "start:prod": "cross-env NODE_ENV=production node server",
@@ -45,12 +48,8 @@
     "prettify": "prettier --write"
   },
   "lint-staged": {
-    "*.js": [
-   
-    ],
-    "*.json": [
-  
-    ]
+    "*.js": [],
+    "*.json": []
   },
   "pre-commit": "lint:staged",
   "resolutions": {

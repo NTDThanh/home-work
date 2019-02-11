@@ -20,6 +20,13 @@ import reducer from './reducer';
 import * as actions from './actions';
 import saga from './saga';
 import messages from './messages';
+<<<<<<< HEAD
+import Baner from '../../components/Baner';
+import {
+  getApiUrlByEnvironment,
+  getApiLoadBalancerUrlByEnvironment,
+} from '../../../api/apiUrl';
+=======
 import CategoryItemMedium from '../../components/CategoryItemMedium';
 // eslint-disable-next-line
 import categoryItemMediumStyle from '../../components/CategoryItemMedium/style.less';

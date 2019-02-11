@@ -56,6 +56,9 @@ namespace Library.API
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IQuestionRepository, QuestionRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+            // 1. Define in status ConfigureServices
+            services.AddHttpCacheHeaders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -109,6 +112,7 @@ namespace Library.API
             });
 
             //libraryContext.EnsureSeedDataForContext();
+            app.UserHttpCacheHeaders();
 
             app.UseMvc();
         }

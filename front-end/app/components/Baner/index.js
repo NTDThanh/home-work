@@ -21,12 +21,12 @@ class Baner extends React.PureComponent {
       <div>
         <Row className="baner-blue" type="flex" justify="center">
           <Col sm={18}>
-            <h3 className="baner-blue-subtitle">
-              {this.props.subtitle || 'Wellcome to test you skills'}
-            </h3>
-            <h1 className="baner-blue-title">
-              {this.props.title || 'Test you skills'}
-            </h1>
+            <div className="baner-blue-text  baner-blue-text-color">
+              <div className="text">
+                {this.props.subtitle || 'Wellcome to test you skills'}
+              </div>
+              <div className="hdr">{this.props.title || 'Test you skills'}</div>
+            </div>
           </Col>
         </Row>
       </div>
