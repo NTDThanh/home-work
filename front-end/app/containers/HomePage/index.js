@@ -20,23 +20,17 @@ import reducer from './reducer';
 import * as actions from './actions';
 import saga from './saga';
 import messages from './messages';
-<<<<<<< HEAD
-import Baner from '../../components/Baner';
-import {
-  getApiUrlByEnvironment,
-  getApiLoadBalancerUrlByEnvironment,
-} from '../../../api/apiUrl';
-=======
 import CategoryItemMedium from '../../components/CategoryItemMedium';
-// eslint-disable-next-line
-import categoryItemMediumStyle from '../../components/CategoryItemMedium/style.less';
 import * as globalStyle from '../../global-styles';
 import BigAlert from '../../components/BigAlert';
-// eslint-disable-next-line
-import styles from './styles.less';
 import BreadcrumbWithTitle from '../../components/BreadcrumbWithTitle';
 import FilterList from '../../components/FilterList';
 import ButtonWithLargeIcon from '../../components/ButtonWithLargeIcon';
+// eslint-disable-next-line
+import categoryItemMediumStyle from '../../components/CategoryItemMedium/style.less';
+// eslint-disable-next-line
+import styles from './styles.less';
+import GridExerciseItem from '../../components/GridExerciseItem';
 
 const mockCategory = [
   {
@@ -64,12 +58,95 @@ const mockCategory = [
     grandients: globalStyle.GrandientsGreen,
   },
 ];
+
 const mockListUrlForBreabcrumb = [
   { url: 'home', urlName: 'Home' },
   { url: 'profile', urlName: 'Profile' },
   { url: 'favorite', urlName: 'Favorite' },
 ];
 
+const mockListExcerciseItem = [
+  {
+    name: 'Excercise name 1',
+    image:
+      'https://pluralsight.imgix.net/course-images/react-styling-components-v1.jpg',
+    questions: {},
+    skills: { name: 'C#' },
+    level: { name: 'Beginer' },
+    author: { id: 'thanh', name: 'ThanhTD' },
+    answerTime: 350,
+  },
+  {
+    name: 'Excercise name 2',
+    image:
+      'https://pluralsight.imgix.net/course-images/react-styling-components-v1.jpg',
+    questions: {},
+    skills: { name: 'C#' },
+    level: { name: 'Beginer' },
+    author: { id: 'thanh', name: 'ThanhTD' },
+    answerTime: 350,
+  },
+  {
+    name: 'Excercise name 3',
+    image:
+      'https://pluralsight.imgix.net/course-images/react-styling-components-v1.jpg',
+    questions: {},
+    skills: { name: 'C#' },
+    level: { name: 'Beginer' },
+    author: { id: 'thanh', name: 'ThanhTD' },
+    answerTime: 350,
+  },
+  {
+    name: 'Excercise name 4',
+    image:
+      'https://pluralsight.imgix.net/course-images/react-styling-components-v1.jpg',
+    questions: {},
+    skills: { name: 'C#' },
+    level: { name: 'Beginer' },
+    author: { id: 'thanh', name: 'ThanhTD' },
+    answerTime: 350,
+  },
+  {
+    name: 'Excercise name 1',
+    image:
+      'https://pluralsight.imgix.net/course-images/react-styling-components-v1.jpg',
+    questions: {},
+    skills: { name: 'C#' },
+    level: { name: 'Beginer' },
+    author: { id: 'thanh', name: 'ThanhTD' },
+    answerTime: 350,
+  },
+  {
+    name: 'Excercise name 2',
+    image:
+      'https://pluralsight.imgix.net/course-images/react-styling-components-v1.jpg',
+    questions: {},
+    skills: { name: 'C#' },
+    level: { name: 'Beginer' },
+    author: { id: 'thanh', name: 'ThanhTD' },
+    answerTime: 350,
+  },
+  {
+    name: 'Excercise name 3',
+    image:
+      'https://pluralsight.imgix.net/course-images/react-styling-components-v1.jpg',
+    questions: {},
+    skills: { name: 'C#' },
+    level: { name: 'Beginer' },
+    author: { id: 'thanh', name: 'ThanhTD' },
+    answerTime: 350,
+  },
+  {
+    name: 'Excercise name 4',
+    image:
+      'https://pluralsight.imgix.net/course-images/react-styling-components-v1.jpg',
+    questions: {},
+    skills: { name: 'C#' },
+    level: { name: 'Beginer' },
+    author: { id: 'thanh', name: 'ThanhTD' },
+    answerTime: 350,
+  },
+];
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.Component {
   state = {
@@ -134,7 +211,16 @@ export class HomePage extends React.Component {
             </div>
           </Col>
         </Row>
-        <FormattedMessage {...messages.header} />
+        <Row
+          className="home-grid-exercise"
+          gutter={{ xs: 8, sm: 12, md: 16, xl: 24 }}
+        >
+          {mockListExcerciseItem.map(item => (
+            <Col xl={4} xs={2} md={6}>
+              <GridExerciseItem exercise={item} />
+            </Col>
+          ))}
+        </Row>
       </div>
     );
   }

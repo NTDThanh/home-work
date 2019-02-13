@@ -78,7 +78,6 @@ namespace Library.API
                     {
                         context.Response.StatusCode = 500;
                         await context.Response.WriteAsync("An unexpected fault happened. Try again later.");
-
                     });
                 });
             }
@@ -112,7 +111,7 @@ namespace Library.API
             });
 
             //libraryContext.EnsureSeedDataForContext();
-            app.UserHttpCacheHeaders();
+            app.UseHttpCacheHeaders();
 
             app.UseMvc();
         }
