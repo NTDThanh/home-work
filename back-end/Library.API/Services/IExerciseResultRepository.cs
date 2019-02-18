@@ -6,17 +6,8 @@ using System.Threading.Tasks;
 
 namespace Library.API.Services
 {
-    public interface IExercisesRepository
+    public interface IExerciseResultRepository
     {
-        #region Exercises
-        IEnumerable<Exercises> GetExercises();
-        Exercises GetExercise(Guid exerciseId);
-        void AddExercise(Exercises exercises);
-        void UpdateExercise(Exercises exercises);
-        void DeleteExercise(Exercises exercises);
-        bool ExercisesExists(Guid exercisesId);
-        #endregion
-
         #region ExerciseResult
         IEnumerable<ExerciseResult> GetExercisesResults();
         ExerciseResult GetExerciseResult(Guid exerciseId);

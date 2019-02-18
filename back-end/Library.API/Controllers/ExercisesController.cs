@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EFCore.Data;
 using EFCore.Domain;
+using Library.API.Services;
 
 namespace Library.API.Controllers
 {
@@ -14,18 +15,18 @@ namespace Library.API.Controllers
     [ApiController]
     public class ExercisesController : ControllerBase
     {
-        private readonly HomeWorkContext _context;
+        private readonly IExcercisesRepository exercisesRepository;
 
-        public ExercisesController(HomeWorkContext context)
+        public ExercisesController(IExcercisesRepository _exercisesRepository)
         {
-            _context = context;
+            exercisesRepository = _exercisesRepository;
         }
 
         // GET: api/exercises
         [HttpGet]
         public IEnumerable<Exercises> GetExercises()
         {
-            return _context.Exercises;
+            return exercisesRepository.GetExercises();
         }
 
         // GET: api/exercises/5
@@ -37,7 +38,7 @@ namespace Library.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var exercises = await _context.Exercises.FindAsync(id);
+            var exercises = await exercisesRepository.FindAsync(id);
 
             if (exercises == null)
             {

@@ -19,10 +19,5 @@
     <ProjectReference Include="..\EFCore.Data\EFCore.Data.csproj" />
     <ProjectReference Include="..\EFCore.Domain\EFCore.Domain.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\Interface\" />
-    <Folder Include="Services\Repository\" />
-  </ItemGroup>
  
 </Project>
