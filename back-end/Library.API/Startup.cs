@@ -56,6 +56,7 @@ namespace Library.API
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IQuestionRepository, QuestionRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IExcercisesRepository, ExcercisesRepository>();
 
             // 1. Define in status ConfigureServices
             services.AddHttpCacheHeaders();

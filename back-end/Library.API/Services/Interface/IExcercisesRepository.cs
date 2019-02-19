@@ -15,6 +15,7 @@ namespace Library.API.Services
         void UpdateExercises(Exercises exercises);
         void DeleteExercises(Exercises exercises);
         bool ExercisesExists(Guid exercisesId);
-        Task FindAsync(Guid id);
+        Task<Exercises> FindAsync(Guid id);
+        bool Save();
     }
 }

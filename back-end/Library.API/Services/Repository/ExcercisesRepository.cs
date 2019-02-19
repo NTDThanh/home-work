@@ -47,11 +47,6 @@ namespace Library.API.Services
             return _context.Exercises.Any(x => x.Id.Equals(exercisesId));
         }
 
-        public Task FindAsync(Guid id)
-        {
-          return  _context.Exercises.FindAsync(id);
-        }
-
         public IEnumerable<Exercises> GetCollectionQuestions(IEnumerable<Guid> ids)
         {
             return _context.Exercises.Where(x => ids.Contains(x.Id));
@@ -70,6 +65,15 @@ namespace Library.API.Services
         public void UpdateExercises(Exercises exercises)
         {
             throw new NotImplementedException();
+        }
+
+        Task<Exercises> IExcercisesRepository.FindAsync(Guid id)
+        {
+            return _context.Exercises.FindAsync(id);
+        }
+        public bool Save()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }

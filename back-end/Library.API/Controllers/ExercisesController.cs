@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using EFCore.Data;
 using EFCore.Domain;
 using Library.API.Services;
+using Library.API.Helpers;
 
 namespace Library.API.Controllers
 {
@@ -16,10 +17,12 @@ namespace Library.API.Controllers
     public class ExercisesController : ControllerBase
     {
         private readonly IExcercisesRepository exercisesRepository;
+        private readonly HomeWorkContext context;
 
-        public ExercisesController(IExcercisesRepository _exercisesRepository)
+        public ExercisesController(IExcercisesRepository _exercisesRepository, HomeWorkContext _context)
         {
             exercisesRepository = _exercisesRepository;
+            context = _context;
         }
 
         // GET: api/exercises
@@ -62,11 +65,11 @@ namespace Library.API.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(exercises).State = EntityState.Modified;
+            context.Entry(exercises).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -85,17 +88,105 @@ namespace Library.API.Controllers
 
         // POST: api/exercises
         [HttpPost]
-        public async Task<IActionResult> PostExercises([FromBody] Exercises exercises)
+        public IActionResult PostExercises([FromBody] Exercises exercises)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            #region Mock data
+            var levelBeginer = new Levels()
+            {
+                CreateBy = new Guid("23e47499-948c-4e09-9c14-f5aeb2d27bd9"),
+                CreateAt = DateTime.Now,
+                Name = "Beginer",
+                Description = "Beginer",
+                IsDelete = false,
+            };
 
-            _context.Exercises.Add(exercises);
-            await _context.SaveChangesAsync();
+            var levelIntermediate = new Levels()
+            {
+                CreateBy = new Guid("23e47499-948c-4e09-9c14-f5aeb2d27bd9"),
+                CreateAt = DateTime.Now,
+                Name = "Intermediate",
+                Description = "Intermediate",
+                IsDelete = false,
+            };
 
-            return CreatedAtAction("GetExercises", new { id = exercises.Id }, exercises);
+            var levelAdvanced = new Levels()
+            {
+                CreateBy = new Guid("23e47499-948c-4e09-9c14-f5aeb2d27bd9"),
+                CreateAt = DateTime.Now,
+                Name = "Advanced",
+                Description = "Advanced",
+                IsDelete = false,
+            };
+
+            List<Exercises> exercisesList = new List<Exercises>()
+            {
+                new Exercises()
+            {
+                Id = new Guid(),
+                Name = "Styling React Components",
+                IsDelete = false,
+                Image = ImageBase64.RandomImage(),
+                CreateBy = new Guid("23e47499-948c-4e09-9c14-f5aeb2d27bd9"),
+                CreateAt = DateTime.Now,
+                Level =levelBeginer,
+            },
+        new Exercises()
+            {
+                Id = new Guid(),
+                Name = "Securing React Apps with Auth0",
+                IsDelete = false,
+                Image =  ImageBase64.RandomImage(),
+                CreateBy = new Guid("23e47499-948c-4e09-9c14-f5aeb2d27bd9"),
+                CreateAt = DateTime.Now,
+                Level =levelBeginer,
+            },
+        new Exercises()
+            {
+                Id = new Guid(),
+                Name = "Clean Architecture: Patterns, Practices, and Principles",
+                IsDelete = false,
+                Image =  ImageBase64.RandomImage(),
+                CreateBy = new Guid("23e47499-948c-4e09-9c14-f5aeb2d27bd9"),
+                CreateAt = DateTime.Now,
+                                Level =levelAdvanced,
+            },
+        new Exercises()
+            {
+                Id = new Guid(),
+                Name = "The MVC Request Life Cycle",
+                IsDelete = false,
+                Image =  ImageBase64.RandomImage(),
+                CreateBy = new Guid("23e47499-948c-4e09-9c14-f5aeb2d27bd9"),
+                CreateAt = DateTime.Now,
+                Level = levelIntermediate,
+            },
+        new Exercises()
+            {
+                Id = new Guid(),
+                Name = "Understanding OWIN and Katana",
+                IsDelete = false,
+                Image =  ImageBase64.RandomImage(),
+                CreateBy = new Guid("23e47499-948c-4e09-9c14-f5aeb2d27bd9"),
+                CreateAt = DateTime.Now,
+                Level = levelIntermediate,
+            }
+        };
+
+            #endregion
+            exercisesList.Add(exercises);
+
+            exercisesRepository.AddManyExercises(exercisesList);
+
+            exercisesRepository.Save();
+
+            return CreatedAtAction("GetExercises", new
+            {
+                id = exercises.Id
+            }, exercises);
         }
 
         // DELETE: api/exercises/5
@@ -107,21 +198,23 @@ namespace Library.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var exercises = await _context.Exercises.FindAsync(id);
+            var exercises = await context.Exercises.FindAsync(id);
             if (exercises == null)
             {
                 return NotFound();
             }
 
-            _context.Exercises.Remove(exercises);
-            await _context.SaveChangesAsync();
+            context.Exercises.Remove(exercises);
+            await context.SaveChangesAsync();
 
             return Ok(exercises);
         }
 
         private bool ExercisesExists(Guid id)
         {
-            return _context.Exercises.Any(e => e.Id == id);
+            return context.Exercises.Any(e => e.Id == id);
         }
     }
 }
+
+

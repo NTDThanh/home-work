@@ -153,6 +153,14 @@ export class HomePage extends React.Component {
     listDisplayType: 'grid',
   };
 
+  componentDidMount() {
+    this.initialPage();
+  }
+
+  initialPage = () => {
+    this.props.actions.getListExcercise();
+  }
+
   handleChangeDisplayType = () => {
     const { listDisplayType } = this.state;
     this.setState({
