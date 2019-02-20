@@ -159,7 +159,7 @@ export class HomePage extends React.Component {
 
   initialPage = () => {
     this.props.actions.getListExcercise();
-  }
+  };
 
   handleChangeDisplayType = () => {
     const { listDisplayType } = this.state;
@@ -169,6 +169,8 @@ export class HomePage extends React.Component {
   };
 
   render() {
+    const { listExcercises = [] } = this.props.homePage;
+    debugger
     const displayTypeIcon =
       this.state.listDisplayType === 'grid' ? 'appstore' : 'database';
     const displayTypeButtonFocus = this.state.listDisplayType !== 'grid';
@@ -223,8 +225,8 @@ export class HomePage extends React.Component {
           className="home-grid-exercise"
           gutter={{ xs: 8, sm: 12, md: 16, xl: 24 }}
         >
-          {mockListExcerciseItem.map(item => (
-            <Col xl={4} xs={2} md={6}>
+          {listExcercises.map(item => (
+            <Col xl={6} xxl={4}>
               <GridExerciseItem exercise={item} />
             </Col>
           ))}

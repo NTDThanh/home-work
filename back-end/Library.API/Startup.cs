@@ -59,7 +59,25 @@ namespace Library.API
             services.AddScoped<IExcercisesRepository, ExcercisesRepository>();
 
             // 1. Define in status ConfigureServices
-            services.AddHttpCacheHeaders();
+            services.AddHttpCacheHeaders(
+                (expirationModelOption) =>
+                {
+                    expirationModelOption.MaxAge = 60;
+                },
+                (validationModelOptions)
+                =>
+                {
+                    validationModelOptions.MustRevalidate = true;
+                }
+                );
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.WithOrigins("http://localhost:3000"));
+            });
+
+            services.AddResponseCaching();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -114,7 +132,12 @@ namespace Library.API
             //libraryContext.EnsureSeedDataForContext();
             app.UseHttpCacheHeaders();
 
+            app.UseResponseCaching();
+
             app.UseMvc();
+
+            // Shows UseCors with named policy.
+            app.UseCors("AllowSpecificOrigin");
         }
     }
 }

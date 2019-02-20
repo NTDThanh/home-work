@@ -5,14 +5,18 @@
  */
 
 import { fromJS } from 'immutable';
-import { DEFAULT_ACTION } from './constants';
+import * as C from './constants';
 
-export const initialState = fromJS({});
+export const initialState = fromJS({
+  listExcercises: [],
+});
 
 function homePageReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
+    case C.DEFAULT_ACTION:
       return state;
+    case C.GET_EXCERCSICE_SUCCSESS:
+      return state.set('listExcercises', action.payload);
     default:
       return state;
   }

@@ -19,23 +19,30 @@ class GridExerciseItem extends React.PureComponent {
 
   render() {
     const { exercise } = this.props;
+    const level = exercise.level || {};
     return (
       <Card
-        className="grid-course-item"
+        className="grid-excercises-item"
         hoverable
         cover={
           <img
             alt={exercise.name}
+            className="grid-excercises-cover-image"
             src={
               exercise.image ||
               'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'
             }
           />
         }
-        actions={[exercise.level.name, exercise.answerTime, exercise.createAt]}
+        actions={[
+          level.name || 'Beginer',
+          exercise.answerTime || '6m30s',
+          exercise.createAt || '2019-01-25',
+        ]}
       >
         <Meta
           title={exercise.name}
+          className="grid-excercises-title"
           description="ThanhTD" // {this.authorLink(exercise.author)}
         />
       </Card>

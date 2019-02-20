@@ -9,11 +9,13 @@ using EFCore.Data;
 using EFCore.Domain;
 using Library.API.Services;
 using Library.API.Helpers;
+using Microsoft.AspNetCore.Cors;
 
 namespace Library.API.Controllers
 {
     [Route("api/exercises")]
     [ApiController]
+    [EnableCors("AllowSpecificOrigin")]
     public class ExercisesController : ControllerBase
     {
         private readonly IExcercisesRepository exercisesRepository;
