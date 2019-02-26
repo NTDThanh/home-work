@@ -10,10 +10,12 @@
     "npm": ">=5",
     "node": ">=8.10.0"
   },
+  "main": "app/electron.js",
   "author": "My",
   "license": "MIT",
   "scripts": {
     "analyze:clean": "rimraf stats.json",
+    "electron-dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "preanalyze": "npm run analyze:clean",
     "analyze": "node ./internals/scripts/analyze.js",
     "extract-intl": "node ./internals/scripts/extract-intl.js",
@@ -65,6 +67,7 @@
     "compression": "1.7.3",
     "connected-react-router": "4.5.0",
     "cross-env": "5.2.0",
+    "electron-is-dev": "^1.0.1",
     "express": "4.16.4",
     "fontfaceobserver": "2.0.13",
     "history": "4.7.2",
@@ -107,6 +110,7 @@
     "@babel/preset-react": "7.0.0",
     "@babel/register": "7.0.0",
     "add-asset-html-webpack-plugin": "3.1.1",
+    "antd-pro-merge-less": "0.0.9",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.0.1",
     "babel-loader": "8.0.4",
@@ -119,8 +123,11 @@
     "circular-dependency-plugin": "5.0.2",
     "compare-versions": "3.4.0",
     "compression-webpack-plugin": "2.0.0",
+    "concurrently": "^4.1.0",
     "coveralls": "3.0.2",
     "css-loader": "1.0.0",
+    "electron": "^4.0.5",
+    "electron-builder": "^20.38.5",
     "enzyme": "3.7.0",
     "enzyme-adapter-react-16": "1.6.0",
     "enzyme-to-json": "3.3.4",
@@ -161,12 +168,12 @@
     "svg-url-loader": "2.3.2",
     "terser-webpack-plugin": "1.1.0",
     "url-loader": "1.1.2",
+    "wait-on": "^3.2.0",
     "webpack": "4.23.1",
     "webpack-cli": "3.1.2",
     "webpack-dev-middleware": "3.4.0",
     "webpack-hot-middleware": "2.24.3 ",
     "webpack-pwa-manifest": "3.7.1",
-    "whatwg-fetch": "3.0.0",
-    "antd-pro-merge-less": "0.0.9"
+    "whatwg-fetch": "3.0.0"
   }
 }
